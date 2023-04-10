@@ -1,18 +1,24 @@
-import { AppBar, Badge, BottomNavigation, BottomNavigationAction, Box, Dialog, Drawer, Grid, Paper, Rating, Toolbar, Typography } from "@mui/material"
+import { AppBar, Badge, BottomNavigation, BottomNavigationAction, Box, Dialog, Drawer, FormControl, Grid, InputLabel, MenuItem, Paper, Rating, Select, TextField, Toolbar, Typography } from "@mui/material"
 import Carousel from 'react-material-ui-carousel'
 import { useEffect, useState } from "react"
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { Link } from "react-router-dom";
-import ProductionQuantityLimitsIcon from '@mui/icons-material/ProductionQuantityLimits';
 import Swal from "sweetalert2";
-const url = 'https://dummyjson.com/products'
+import { url } from "../apiHandler";
 
 function MainPage() {
   const [products, setProducts] = useState([])
+  const [search, setSearch] = useState("")
   const [productForDilog, setProductForDilog] = useState([])
   const [cartItems, setCartItems] = useState([]);
   const [open, setOpen] = useState(false);
   const [openDrawer, setOpenDrawer] = useState(false);
+  const [category, setCategory] = useState('');
+  const categorys = ["smartphones","laptops","fragrances","skincare","groceries","home-decoration"]
+
+  const handleChange = (event) => {
+    setCategory(event.target.value);
+  };
 
   const handleClickOpen = (products) => {
     setOpen(true);
@@ -22,7 +28,7 @@ function MainPage() {
     setOpenDrawer(true);
   };
   const error = (products) => {
-    return(
+    return (
       Swal.fire({
         icon: 'error',
         title: 'Oops...',
@@ -37,12 +43,18 @@ function MainPage() {
   const handleCloseDrawer = () => {
     setOpenDrawer(false);
   };
+
+  // Method for searching
+  const searchTask = (e) => {
+    setSearch(e.target.value);
+  };
+
   useEffect(() => {
     const fatchAPI = async () => {
       const response = await fetch(url)
       const json = await response.json()
       setProducts(json.products)
-      console.log('response', json.products);
+      // console.log('response', json.products);
     }
     fatchAPI();
   }, [])
@@ -82,20 +94,60 @@ function MainPage() {
     return cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
   };
 
+  const filterDataBySearch = products.filter((t) =>
+    t.title.toLowerCase().includes(search.toLowerCase())
+  );
+
+  const filterDataBySelect = products.filter((t) =>
+    t.category.includes(category)
+  );
+
+  const displayData = category === '' ? filterDataBySearch : filterDataBySelect
+
   return (
     <>
       <div className="products-container">
         <Box sx={{ flexGrow: 1 }}>
           <AppBar position="static" >
-            <Toolbar style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-              <Typography >
-                Shopping Web
-              </Typography>
+            <Toolbar style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <Typography style={{ fontFamily: 'cursive' }} >
+                  My Shopping site
+                </Typography>
+                <img src="https://cdn-icons-png.flaticon.com/512/2331/2331970.png" alt="" style={{ height: '3rem' }} />
+              </div>
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              <FormControl style={{width:'15rem',marginRight:'1rem'}}>
+                <InputLabel id="demo-simple-select-label" style={{color:'white',marginTop:'-0.5rem'}}>Category</InputLabel>
+                <Select
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  style={{color:'white',height:'2.5rem'}}
+                  value={category}
+                  label="Age"
+                  onChange={handleChange}
+                >
+                {categorys.map((data)=>{
+                  return(
+                    <MenuItem value={data}>{data}</MenuItem>
+                  )
+                })}
+                </Select>
+              </FormControl>
+              <input
+                type="text"
+                className="inputTagCSS"
+                placeholder="Search Tasks"
+                value={search}
+                onChange={searchTask}
+                style={{ border: '0' }}
+              />
+              </div>
             </Toolbar>
           </AppBar>
         </Box>
         <Grid container spacing={2} style={{ marginBottom: '5rem', textAlign: 'center', marginTop: '1rem' }}>
-          {products.map(product => (
+          {displayData.map(product => (
             <Grid item xs={4} style={{ border: '1px solid gray', paddingLeft: '0' }} >
               <img src={product.thumbnail} alt="" style={{ height: '10rem', width: '10rem', cursor: 'pointer' }} onClick={() => { handleClickOpen(product) }} />
               <h2>{product.title}</h2>
@@ -119,7 +171,7 @@ function MainPage() {
               <Badge badgeContent={cartItems.length} color="success">
                 <ShoppingCartIcon color="action" />
               </Badge>
-            } onClick={() => {cartItems.length > 0 ? handleClickOpenDrawer() : error() }} />
+            } onClick={() => { cartItems.length > 0 ? handleClickOpenDrawer() : error() }} />
           </BottomNavigation>
         </Paper>
         <Drawer
@@ -173,8 +225,8 @@ function MainPage() {
               </tbody>
             </table>
             <p>Total: ${calculateTotalPrice()}</p>
-            <Link to = '/signUp' >
-            <button>Checkout</button>
+            <Link to='/signUp' >
+              <button>Checkout</button>
             </Link>
           </div>
         </Dialog>

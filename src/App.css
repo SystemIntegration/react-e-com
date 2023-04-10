@@ -6,3 +6,18 @@
   margin: 0;
   margin-bottom: 5rem;
 }
+.inputTagCSS {
+  height: 2rem;
+  padding: 3px 10px;
+  font-size: 16px;
+  border-radius: 5px;
+  border: 1px solid black;
+  box-shadow: none;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.inputTagCSS:focus {
+  border-color: white;
+  box-shadow: 1px 2px 3px black;
+}
