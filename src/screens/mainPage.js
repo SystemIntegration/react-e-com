@@ -146,9 +146,9 @@ function MainPage() {
             </Toolbar>
           </AppBar>
         </Box>
-        <Grid container spacing={2} style={{ marginBottom: '5rem', textAlign: 'center', marginTop: '1rem' }}>
+        <Grid container spacing={2}  style={{ marginBottom: '5rem', textAlign: 'center', marginTop: '1rem' }}>
           {displayData.map(product => (
-            <Grid item xs={4} style={{ border: '1px solid gray', paddingLeft: '0' }} >
+            <Grid item md={3} sm={6} xs={12} style={{ border: '1px solid gray', paddingLeft: '0' }} >
               <img src={product.thumbnail} alt="" style={{ height: '10rem', width: '10rem', cursor: 'pointer' }} onClick={() => { handleClickOpen(product) }} />
               <h2>{product.title}</h2>
               <div style={{ display: 'flex', justifyContent: 'space-evenly', alignItems: 'center' }}>
