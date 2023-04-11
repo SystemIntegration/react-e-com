@@ -1,4 +1,4 @@
-import { AppBar, Badge, BottomNavigation, BottomNavigationAction, Box, Dialog, Drawer, FormControl, Grid, InputLabel, MenuItem, Paper, Rating, Select, TextField, Toolbar, Typography } from "@mui/material"
+import { AppBar, Badge, BottomNavigation, BottomNavigationAction, Box, Dialog, Drawer, FormControl, Grid, InputLabel, MenuItem, Paper, Rating, Select, Toolbar, Typography } from "@mui/material"
 import Carousel from 'react-material-ui-carousel'
 import { useEffect, useState } from "react"
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
@@ -14,20 +14,38 @@ function MainPage() {
   const [open, setOpen] = useState(false);
   const [openDrawer, setOpenDrawer] = useState(false);
   const [category, setCategory] = useState('');
-  const categorys = ["smartphones","laptops","fragrances","skincare","groceries","home-decoration"]
+  const categorys = ["smartphones", "laptops", "fragrances", "skincare", "groceries", "home-decoration"]
 
+  useEffect(() => {
+    // method for get data from API
+    const fatchAPI = async () => {
+      const response = await fetch(url)
+      const json = await response.json()
+      setProducts(json.products)
+      // For check response please uncomment below line.
+      // console.log('response', json.products);
+    }
+    fatchAPI();
+  }, [])
+
+  // Method for save dropdown selection.
   const handleChange = (event) => {
     setCategory(event.target.value);
   };
 
+  // Method for open dialog
   const handleClickOpen = (products) => {
     setOpen(true);
     setProductForDilog(products)
   };
-  const handleClickOpenDrawer = (products) => {
+
+  // Method for Open Drawer
+  const handleClickOpenDrawer = () => {
     setOpenDrawer(true);
   };
-  const error = (products) => {
+
+  // Method for through error when cart value is zero(0)
+  const error = () => {
     return (
       Swal.fire({
         icon: 'error',
@@ -37,9 +55,12 @@ function MainPage() {
     )
   };
 
+  // Method for Close dialog
   const handleClose = () => {
     setOpen(false);
   };
+
+  // Method for Close Drawer
   const handleCloseDrawer = () => {
     setOpenDrawer(false);
   };
@@ -49,16 +70,7 @@ function MainPage() {
     setSearch(e.target.value);
   };
 
-  useEffect(() => {
-    const fatchAPI = async () => {
-      const response = await fetch(url)
-      const json = await response.json()
-      setProducts(json.products)
-      // console.log('response', json.products);
-    }
-    fatchAPI();
-  }, [])
-
+  // method for Add item to cart
   const handleAddToCart = (product) => {
     const existingProductIndex = cartItems.findIndex(item => item.id === product.id);
     if (existingProductIndex >= 0) {
@@ -71,6 +83,7 @@ function MainPage() {
     }
   };
 
+  // method for remove item from cart
   const handleRemoveFromCart = (product) => {
     const existingProductIndex = cartItems.findIndex(item => item.id === product.id);
     if (existingProductIndex >= 0) {
@@ -84,29 +97,33 @@ function MainPage() {
     }
   };
 
+  // method for carousel
   function Item(props) {
     return (
       <img src={props.item} alt="" style={{ height: '10rem', width: '10rem' }} />
     )
   }
-
+  // method for calculate TotalPrice
   const calculateTotalPrice = () => {
     return cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
   };
 
+  // method for search data
   const filterDataBySearch = products.filter((t) =>
     t.title.toLowerCase().includes(search.toLowerCase())
   );
-
+  // method for category data data
   const filterDataBySelect = products.filter((t) =>
     t.category.includes(category)
   );
 
+  // Use this variable for show data in main UI.
   const displayData = category === '' ? filterDataBySearch : filterDataBySelect
 
   return (
     <>
       <div className="products-container">
+        {/* Header part */}
         <Box sx={{ flexGrow: 1 }}>
           <AppBar position="static" >
             <Toolbar style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
@@ -114,55 +131,60 @@ function MainPage() {
                 <Typography style={{ fontFamily: 'cursive' }} >
                   My Shopping site
                 </Typography>
-                <img src="https://cdn-icons-png.flaticon.com/512/2331/2331970.png" alt="" style={{ height: '3rem' }} />
+                <img src="https://cdn-icons-png.flaticon.com/512/2331/2331970.png" alt="" className="imageForShopping" />
               </div>
               <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-              <FormControl style={{width:'15rem',marginRight:'1rem'}}>
-                <InputLabel id="demo-simple-select-label" style={{color:'white',marginTop:'-0.5rem'}}>Category</InputLabel>
-                <Select
-                  labelId="demo-simple-select-label"
-                  id="demo-simple-select"
-                  style={{color:'white',height:'2.5rem'}}
-                  value={category}
-                  label="Age"
-                  onChange={handleChange}
-                >
-                {categorys.map((data)=>{
-                  return(
-                    <MenuItem value={data}>{data}</MenuItem>
-                  )
-                })}
-                </Select>
-              </FormControl>
-              <input
-                type="text"
-                className="inputTagCSS"
-                placeholder="Search Tasks"
-                value={search}
-                onChange={searchTask}
-                style={{ border: '0' }}
-              />
+
+                <FormControl className="drowpDown" style={{ marginRight: '1rem' }}>
+                  <InputLabel id="demo-simple-select-label" style={{ color: 'white', marginTop: '-0.5rem' }}>Category</InputLabel>
+                  <Select
+                    labelId="demo-simple-select-label"
+                    id="demo-simple-select"
+                    style={{ color: 'white', height: '2.5rem' }}
+                    value={category}
+                    label="Age"
+                    onChange={handleChange}
+                  >
+                    {categorys.map((data) => {
+                      return (
+                        <MenuItem value={data}>{data}</MenuItem>
+                      )
+                    })}
+                  </Select>
+                </FormControl>
+                <input
+                  type="text"
+                  className="inputTagCSS"
+                  placeholder="Search Tasks"
+                  value={search}
+                  onChange={searchTask}
+                  style={{ border: '0' }}
+                />
               </div>
             </Toolbar>
           </AppBar>
         </Box>
-        <Grid container spacing={2}  style={{ marginBottom: '5rem', textAlign: 'center', marginTop: '1rem' }}>
+        {/* Main content part */}
+        <Grid container spacing={2} style={{ marginBottom: '5rem', textAlign: 'center', marginTop: '1rem' }}>
           {displayData.map(product => (
-            <Grid item md={3} sm={6} xs={12} style={{ border: '1px solid gray', paddingLeft: '0' }} >
+            <Grid key={product.id} item lg={3} md={4} sm={6} xs={12} style={{ border: '1px solid gray', paddingLeft: '0' }} >
               <img src={product.thumbnail} alt="" style={{ height: '10rem', width: '10rem', cursor: 'pointer' }} onClick={() => { handleClickOpen(product) }} />
-              <h2>{product.title}</h2>
-              <div style={{ display: 'flex', justifyContent: 'space-evenly', alignItems: 'center' }}>
-                <p>${product.price}</p>
+              <h2 style={{ margin: '0' }}>{product.title}</h2>
+              <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                 <h4 style={{ color: 'green' }}>{product.discountPercentage}% Off</h4>
                 <Rating
                   name="simple-controlled"
                   value={product.rating}
+                  style={{ marginLeft: '1rem' }}
                 />
-                <button onClick={() => handleAddToCart(product)}>Add to cart</button>
+              </div>
+              <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                <p>${product.price}</p>
               </div>
             </Grid>
           ))}
         </Grid>
+        {/* bottom part */}
         <Paper sx={{ position: 'fixed', bottom: 0, left: 0, right: 0 }} elevation={3}>
           <BottomNavigation
             style={{ justifyContent: 'end', alignContent: 'center', height: '3rem', backgroundColor: '#F3FEE8' }}
@@ -174,6 +196,7 @@ function MainPage() {
             } onClick={() => { cartItems.length > 0 ? handleClickOpenDrawer() : error() }} />
           </BottomNavigation>
         </Paper>
+        {/* Product details part */}
         <Drawer
           open={open}
           onClose={handleClose}
@@ -192,6 +215,7 @@ function MainPage() {
             <button onClick={() => handleAddToCart(productForDilog)}>Add to cart</button>
           </div>
         </Drawer>
+        {/* Cart details */}
         <Dialog anchor="right" open={openDrawer} onClose={handleCloseDrawer}>
           <div className="cart-item" style={{ width: '38rem', height: '30rem', textAlign: 'center' }}>
             <table style={{ width: '100%' }}>
@@ -206,15 +230,9 @@ function MainPage() {
               <tbody>
                 {cartItems.map(item => (
                   <tr key={item.id} >
-                    <td>
-                      <img src={item.thumbnail} style={{ width: '5rem', height: '5rem', borderRadius: '33%' }} />
-                    </td>
-                    <td>
-                      <p>{item.title}</p>
-                    </td>
-                    <td>
-                      <p>${item.price * item.quantity}</p>
-                    </td>
+                    <td><img src={item.thumbnail} style={{ width: '5rem', height: '5rem', borderRadius: '33%' }} /></td>
+                    <td><p>{item.title}</p></td>
+                    <td><p>${item.price * item.quantity}</p></td>
                     <td>
                       <button onClick={() => handleRemoveFromCart(item)} style={{ marginRight: '1rem' }}>-</button>
                       <span style={{ marginRight: '1rem' }}>{item.quantity}</span>
@@ -225,9 +243,7 @@ function MainPage() {
               </tbody>
             </table>
             <p>Total: ${calculateTotalPrice()}</p>
-            <Link to='/signUp' >
-              <button>Checkout</button>
-            </Link>
+            <Link to='/signUp'><button>Checkout</button></Link>
           </div>
         </Dialog>
       </div>

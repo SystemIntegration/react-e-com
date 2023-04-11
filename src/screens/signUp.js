@@ -13,6 +13,7 @@ function SignUp() {
     const [pincode, setPincode] = useState('');
     const [userData, setUserData] = useState();
 
+    // Method for save data in local storage.
     const handleSubmit = (event) => {
         event.preventDefault();
         setUserData({

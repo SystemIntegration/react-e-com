@@ -21,3 +21,31 @@
   border-color: white;
   box-shadow: 1px 2px 3px black;
 }
+
+.drowpDown{
+  width: 15rem;
+  margin-right: 1rem;
+}
+.imageForShopping{
+  height: 3rem;
+}
+
+@media screen and (max-width: 585px) {
+  .drowpDown {
+    width: 8rem;
+  }
+  .inputTagCSS {
+    width: 8rem;
+  }
+}
+@media screen and (max-width: 410px) {
+  .drowpDown {
+    width: 6rem;
+  }
+  .inputTagCSS {
+    width: 6rem;
+  }
+  .imageForShopping {
+    height: 1.5rem;
+  }
+}
