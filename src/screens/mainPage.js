@@ -1,10 +1,11 @@
-import { AppBar, Badge, BottomNavigation, BottomNavigationAction, Box, Dialog, Drawer, FormControl, Grid, InputLabel, MenuItem, Paper, Rating, Select, Toolbar, Typography } from "@mui/material"
+import { AppBar, Badge, BottomNavigation, BottomNavigationAction, Box, Container, Dialog, Drawer, FormControl, Grid, InputLabel, MenuItem, Paper, Rating, Select, Toolbar, Typography } from "@mui/material"
 import Carousel from 'react-material-ui-carousel'
 import { useEffect, useState } from "react"
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import { url } from "../apiHandler";
+import Header from "./header";
 
 function MainPage() {
   const [products, setProducts] = useState([])
@@ -23,7 +24,7 @@ function MainPage() {
       const json = await response.json()
       setProducts(json.products)
       // For check response please uncomment below line.
-      // console.log('response', json.products);
+      console.log('response', json.products);
     }
     fatchAPI();
   }, [])
@@ -124,48 +125,9 @@ function MainPage() {
     <>
       <div className="products-container">
         {/* Header part */}
-        <Box sx={{ flexGrow: 1 }}>
-          <AppBar position="static" >
-            <Toolbar style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                <Typography style={{ fontFamily: 'cursive' }} >
-                  My Shopping site
-                </Typography>
-                <img src="https://cdn-icons-png.flaticon.com/512/2331/2331970.png" alt="" className="imageForShopping" />
-              </div>
-              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-
-                <FormControl className="drowpDown" style={{ marginRight: '1rem' }}>
-                  <InputLabel id="demo-simple-select-label" style={{ color: 'white', marginTop: '-0.5rem' }}>Category</InputLabel>
-                  <Select
-                    labelId="demo-simple-select-label"
-                    id="demo-simple-select"
-                    style={{ color: 'white', height: '2.5rem' }}
-                    value={category}
-                    label="Age"
-                    onChange={handleChange}
-                  >
-                    {categorys.map((data) => {
-                      return (
-                        <MenuItem value={data}>{data}</MenuItem>
-                      )
-                    })}
-                  </Select>
-                </FormControl>
-                <input
-                  type="text"
-                  className="inputTagCSS"
-                  placeholder="Search Tasks"
-                  value={search}
-                  onChange={searchTask}
-                  style={{ border: '0' }}
-                />
-              </div>
-            </Toolbar>
-          </AppBar>
-        </Box>
+        <Header />
         {/* Main content part */}
-        <Grid container spacing={2} style={{ marginBottom: '5rem', textAlign: 'center', marginTop: '1rem' }}>
+        {/* <Grid container spacing={2} style={{ marginBottom: '5rem', textAlign: 'center', marginTop: '1rem' }}>
           {displayData.map(product => (
             <Grid key={product.id} item lg={3} md={4} sm={6} xs={12} style={{ border: '1px solid gray', paddingLeft: '0' }} >
               <img src={product.thumbnail} alt="" style={{ height: '10rem', width: '10rem', cursor: 'pointer' }} onClick={() => { handleClickOpen(product) }} />
@@ -183,11 +145,37 @@ function MainPage() {
               </div>
             </Grid>
           ))}
-        </Grid>
+        </Grid> */}
+        <div style={{marginBottom: '3rem'}}>
+          {displayData.map((product) => {
+            return (
+              <div style={{ display: 'flex',margin: '1rem 1rem', padding: '1rem 1rem'}}>
+                <div className="img" style={{ backgroundColor:'rgba(128,128,128, 0.4)'}}>
+                  <img src={product.thumbnail} alt="" style={{ height: '10rem', width: '10rem', cursor: 'pointer',padding: '1rem 1rem'   }} onClick={() => { handleClickOpen(product) }} />
+                </div>
+                <div style={{ marginLeft: '2rem' }}>
+                  <h2 style={{ margin: '0' }}>{product.title}</h2>
+                  <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                    <h4 style={{ color: 'green' }}>{product.discountPercentage}% Off</h4>
+                    <Rating
+                      name="simple-controlled"
+                      value={product.rating}
+                      style={{ marginLeft: '1rem' }}
+                    />
+                  </div>
+                  <div>
+                    <p style={{ fontSize:'2rem', margin: '0' }}>${product.price}</p>
+                  </div>
+                </div>
+              </div>
+            )
+          })
+          }
+        </div>
         {/* bottom part */}
         <Paper sx={{ position: 'fixed', bottom: 0, left: 0, right: 0 }} elevation={3}>
           <BottomNavigation
-            style={{ justifyContent: 'end', alignContent: 'center', height: '3rem', backgroundColor: '#F3FEE8' }}
+            style={{ justifyContent: 'end', alignContent: 'center', height: '3rem', backgroundColor: '#337def' }}
           >
             <BottomNavigationAction label="Recents" icon={
               <Badge badgeContent={cartItems.length} color="success">
