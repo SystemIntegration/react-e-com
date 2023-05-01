@@ -1,1 +1,1 @@
-export const url = 'https://dummyjson.com/products';
+export const url = 'https://dummyjson.com/products?limit=100';
