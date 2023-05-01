@@ -96,7 +96,7 @@ function Products() {
                                 <div style={{ margin: '1rem 1rem' }}>
                                     <img src={data} alt="" style={{
                                         width: '4rem', height: '4rem', cursor: 'pointer',
-                                        border: '2px solid black',
+                                        border: '2px solid #fcc729',
                                         boxShadow: selectedImage === data ? '0 0 2px 2px aqua' : 'none'
                                     }}
                                         onClick={() => handleImageClick(data)}
@@ -125,8 +125,8 @@ function Products() {
                         <p style={{ fontSize: '3rem', margin: '0' }}>${product.price}</p>
                         <h4 style={{ color: 'green', marginLeft: "1rem" }}>{product.discountPercentage}% Off</h4>
                     </div>
-                    <Button style={{ fontSize: '1.5rem', borderRadius: '12px', marginTop: '10rem', backgroundColor: 'aqua', color: 'black' }} onClick={() => handleAddToCart(product)}>Add to cart</Button>
-                    <Button disabled={cartItems.length > 0 ? false : true} style={{ fontSize: '1.5rem', borderRadius: '12px', marginTop: '10rem', marginLeft: '1rem', backgroundColor: 'aqua', color: 'black' }} onClick={() => handleRemoveFromCart(product)} >Remove from cart</Button>
+                    <Button style={{ fontSize: '1.5rem', borderRadius: '12px', marginTop: '10rem', backgroundColor: '#337DEF', color: '#fcc729' }} onClick={() => handleAddToCart(product)}>Add to cart</Button>
+                    <Button disabled={cartItems.length > 0 ? false : true} style={{ fontSize: '1.5rem', borderRadius: '12px', marginTop: '10rem', marginLeft: '1rem', backgroundColor: '#337DEF', color: '#fcc729' }} onClick={() => handleRemoveFromCart(product)} >Remove from cart</Button>
                 </div>
             </div>
             {/* bottom part */}
