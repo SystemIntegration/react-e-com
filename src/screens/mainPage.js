@@ -39,7 +39,7 @@ function MainPage() {
         {/* Header part */}
         <Header />
         <div style={{ display: 'flex' }}>
-          <div style={{ width: '30%', height: '88vh', overflow: 'auto', margin: '1rem 0 0 1rem' }}>
+          <div className="leftDiv">
             <h3>Shop By category</h3>
             <FormControl style={{ margin: '1rem' }}>
               <RadioGroup
@@ -59,29 +59,29 @@ function MainPage() {
               </RadioGroup>
             </FormControl>
           </div>
-          <div style={{ width: '70%', height: '88vh', overflow: 'auto' }}>
+          <div className="rightDiv">
             {/* Main content part */}
             <Grid container spacing={2}>
               {products.map(product => (
-                <Grid key={product.id} item lg={12}>
-                  <div style={{ display: 'flex', margin: '1rem 1rem', padding: '1rem 1rem' }}>
-                    <div className="img" style={{ backgroundColor: 'rgba(128,128,128, 0.4)' }}>
+                <Grid key={product.id} item lg={6}>
+                  <div style={{ display: 'flex', margin: '1rem 1rem' }}>
+                    <div>
                       <Link to='/product' state={product}>
-                        <img src={product.thumbnail} alt="" style={{ height: '10rem', width: '10rem', cursor: 'pointer', padding: '1rem 1rem' }} />
+                        <img className="img" src={product.thumbnail} alt="" />
                       </Link>
                     </div>
                     <div style={{ marginLeft: '2rem' }}>
-                      <h2 style={{ margin: '0' }}>{product.title}</h2>
-                      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                      <p className="title">{product.title}</p>
+                      <div className="priceOff">
                         <h4 style={{ color: 'green' }}>{product.discountPercentage}% Off</h4>
                         <Rating
                           name="simple-controlled"
                           value={product.rating}
-                          style={{ marginLeft: '1rem' }}
+                          className="rating"
                         />
                       </div>
                       <div>
-                        <p style={{ fontSize: '2rem', margin: '0' }}>${product.price}</p>
+                        <p className="price" >${product.price}</p>
                       </div>
                     </div>
                   </div>

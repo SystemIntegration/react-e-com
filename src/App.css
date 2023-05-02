@@ -22,26 +22,16 @@
   box-shadow: 1px 2px 3px black;
 }
 
-.drowpDown{
-  width: 15rem;
-  margin-right: 1rem;
-}
 .imageForShopping{
   height: 3rem;
 }
 
 @media screen and (max-width: 585px) {
-  .drowpDown {
-    width: 8rem;
-  }
   .inputTagCSS {
     width: 8rem;
   }
 }
 @media screen and (max-width: 410px) {
-  .drowpDown {
-    width: 6rem;
-  }
   .inputTagCSS {
     width: 6rem;
   }
@@ -49,6 +39,7 @@
     height: 1.5rem;
   }
 }
+
 ::-webkit-scrollbar{
   height: 8px;
   width: 8px;
@@ -59,4 +50,86 @@
 ::-webkit-scrollbar-thumb{
   border-radius: 30px;
   background: rgb(219, 219, 219);
+}
+
+.leftDiv{
+  width: 20%;
+  height: 88vh;
+  overflow: auto;
+  margin: 1rem 0 0 1rem;
+}
+
+.rightDiv{
+  width: 80%;
+  height: 88vh;
+  overflow: auto;
+  margin: 1rem 0 0 1rem;
+}
+
+.priceOff{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.img{
+  height: 10rem;
+  width: 10rem;
+  border-radius: 20px;
+}
+
+.rating{
+  margin-left: 1rem;
+}
+
+.title{
+  margin: 0;
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.price{
+  font-size: 2rem;
+  margin: 0;
+}
+
+@media screen and (max-width: 920px) {
+  .leftDiv {
+    width: 30%;
+  }
+  .rightDiv {
+    width: 70%;
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .leftDiv {
+ display: none;
+  }
+  .rightDiv {
+    width: 100%;
+    margin:0;
+  }
+}
+
+@media screen and (max-width: 430px) {
+  .priceOff{
+    display: block;
+  }
+  .rating{
+    margin-left: 0;
+  }
+}
+
+@media screen and (max-width: 380px) {
+  .img{
+    height: 8rem;
+    width: 8rem;
+  }
+  .price{
+    font-size: 1.5rem;
+  }
+  .title{
+    font-size: 1.2rem;
+  }
 }
