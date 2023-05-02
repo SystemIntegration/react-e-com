@@ -4,7 +4,7 @@ import { Badge, BottomNavigation, BottomNavigationAction, Button, Dialog, Grid, 
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import Swal from "sweetalert2";
 import { urlCategory } from '../apiHandler';
-import Header2 from './headerForPro';
+import Header from './header';
 
 function Products() {
     const location = useLocation();
@@ -107,7 +107,7 @@ function Products() {
 
     return (
         <div>
-            <Header2 />
+            <Header value={false}/>
             <div style={{ display: 'flex', justifyContent: 'flex-start', margin: '1rem 1rem' }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', margin: '1rem 1rem' }}>
                     <div style={{ paddingTop: '3rem' }}>

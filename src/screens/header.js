@@ -8,7 +8,10 @@ function Header(props) {
         setSearchText(value)
     };
 
-    props.onSearch(searchText);
+    if(props.value){
+        props.onSearch(searchText);
+    }
+
 
     return (
         <Box Box sx={{ flexGrow: 1 }}>
@@ -39,10 +42,11 @@ function Header(props) {
                             </Typography>
                         </div>
                         <div style={{ display: 'flex', justifyContent: 'center', alignContent: 'center' }}>
+                            {props.value === true &&
                             <div className='input' style={{ textAlign: 'center' }}>
                                 <input type="search" placeholder='Search Product' className="inputTagCSS" onChange={(e) =>  handleSearch(e.target.value) }
                                     />
-                            </div>
+                            </div>}
                         </div>
                     </Toolbar>
                 </Container>

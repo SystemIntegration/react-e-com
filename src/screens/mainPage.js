@@ -51,7 +51,7 @@ function MainPage() {
     <>
       <div className="products-container">
         {/* Header part */}
-        <Header onSearch={handleSearch} />
+        <Header value={true} onSearch={handleSearch} />
         <div style={{ display: 'flex' }}>
           <div className="leftDiv">
             <h3>Shop By category</h3>
