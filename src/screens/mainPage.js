@@ -8,6 +8,7 @@ function MainPage() {
   const [products, setProducts] = useState([])
   const [value, setValue] = useState('All');
   const [categories, setCategories] = useState([]);
+  const [searchResult, setSearchResult] = useState('');
 
   useEffect(() => {
     // method for get data from API
@@ -33,11 +34,24 @@ function MainPage() {
   };
 
 
+
+  const handleSearch = (searchText) => {
+    setSearchResult(searchText);
+  };
+
+
+  // mainTask list for show in display.
+  const filteredData = products.filter((t) =>
+    // console.log('searchResult', t.title.toLowerCase().includes(searchResult.toLowerCase())),
+    t.title.toLowerCase().includes(searchResult.toLowerCase())
+  );
+  console.log('searchResult', filteredData);
+
   return (
     <>
       <div className="products-container">
         {/* Header part */}
-        <Header />
+        <Header onSearch={handleSearch} />
         <div style={{ display: 'flex' }}>
           <div className="leftDiv">
             <h3>Shop By category</h3>
@@ -62,7 +76,7 @@ function MainPage() {
           <div className="rightDiv">
             {/* Main content part */}
             <Grid container spacing={2}>
-              {products.map(product => (
+              {filteredData.map(product => (
                 <Grid key={product.id} item lg={6}>
                   <div style={{ display: 'flex', margin: '1rem 1rem' }}>
                     <div>
