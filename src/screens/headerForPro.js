@@ -1,21 +1,12 @@
 import { AppBar, Box, Container, Toolbar, Typography } from '@mui/material'
-import React, { useState } from 'react'
+import React from 'react'
 
-function Header(props) {
-    const [searchText, setSearchText] = useState('');
-
-    const handleSearch = (value) => {
-        setSearchText(value)
-    };
-
-    props.onSearch(searchText);
-
+function Header2(props) {
     return (
         <Box Box sx={{ flexGrow: 1 }}>
             <AppBar position="static" style={{ background: '#337def' }}>
                 <Container maxWidth="xl">
-                    <Toolbar disableGutters style={{ display: 'flex', justifyContent: 'space-between', alignContent: 'center' }}>
-                        <div style={{ display: 'flex', justifyContent: 'center', alignContent: 'center' }}>
+                    <Toolbar disableGutters>
                             <img src="https://cdn-icons-png.flaticon.com/512/2331/2331970.png" className="imageForShopping" alt="logo" style={{ marginRight: '1rem' }} />
                             <Typography
                                 variant="h4"
@@ -37,13 +28,6 @@ function Header(props) {
                             >
                                 BMV Shopping
                             </Typography>
-                        </div>
-                        <div style={{ display: 'flex', justifyContent: 'center', alignContent: 'center' }}>
-                            <div className='input' style={{ textAlign: 'center' }}>
-                                <input type="search" placeholder='Search Product' className="inputTagCSS" onChange={(e) =>  handleSearch(e.target.value) }
-                                    />
-                            </div>
-                        </div>
                     </Toolbar>
                 </Container>
             </AppBar>
@@ -51,4 +35,4 @@ function Header(props) {
     )
 }
 
-export default Header
+export default Header2

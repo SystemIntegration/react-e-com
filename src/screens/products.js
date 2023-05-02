@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react'
-import Header from './header'
 import { Link, useLocation } from 'react-router-dom'
 import { Badge, BottomNavigation, BottomNavigationAction, Button, Dialog, Grid, Paper, Rating } from '@mui/material';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import Swal from "sweetalert2";
 import { urlCategory } from '../apiHandler';
+import Header2 from './headerForPro';
 
 function Products() {
     const location = useLocation();
@@ -107,7 +107,7 @@ function Products() {
 
     return (
         <div>
-            <Header />
+            <Header2 />
             <div style={{ display: 'flex', justifyContent: 'flex-start', margin: '1rem 1rem' }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', margin: '1rem 1rem' }}>
                     <div style={{ paddingTop: '3rem' }}>
