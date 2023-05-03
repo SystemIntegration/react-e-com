@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
 import { categoryNames, mainCategoryData } from './utils';
 import { Grid } from '@mui/material';
+import { Link } from 'react-router-dom';
 
-function Category(props) {
+function Category() {
 
   const [selectedCategory, setSelectedCategory] = useState(categoryNames[0].name);
   const [category, setCategory] = useState(categoryNames[0].name);
@@ -16,7 +17,6 @@ function Category(props) {
 
   const handleCategoryName = (categoryName) => {
     setCategoryName(categoryName)
-    props.Category(categoryName)
   }
 
   const filterData = (arr, key) => {
@@ -46,7 +46,7 @@ function Category(props) {
   return (
     <div style={{ display: 'flex' }}>
       <div style={{ background: 'gray', height: '83vh', width: '10%', textAlign: 'center', overflow: 'auto' }}>
-        {categoryName.map((data) => {
+        {categoryNames.map((data) => {
           return (<div style={{
             background: selectedCategory === data.name ? 'white' : 'gray',
             paddingTop: '2rem', cursor: 'pointer'
@@ -62,10 +62,12 @@ function Category(props) {
       <div style={{ background: 'white', height: '83vh', width: '90%', overflow: 'auto' }}>
         <Grid container spacing={2} style={{ textAlign: 'center', marginTop: '1rem' }}>
           {userData.map(product => (
-            <Grid item lg={4} md={6} sm={12} xs={12} style={{ padding: '1rem', cursor: 'pointer' }} onClick={() => handleCategoryName(product.title)}>
-              <div >
-                <img src={product.icon} alt="" style={{ height: '2rem', width: '2rem' }} />
-                <h2 style={{ marginLeft: "1rem" }}>{product.title.toUpperCase()}</h2>
+            <Grid item lg={4} md={6} sm={12} xs={12} style={{ padding: '2rem', cursor: 'pointer' }} onClick={() => handleCategoryName(product.title)}>
+              <div style={{ color: categoryName === product.title ? 'green' : 'black' }} >
+                <Link to="/productList" state={categoryName} style={{ textDecoration: 'none' }}>
+                  <img src={product.icon} alt="" style={{ height: '2rem', width: '2rem' }} />
+                </Link>
+                <h2 style={{ marginLeft: "1rem", color: categoryName === product.title ? 'green' : 'black', }}>{product.title.toUpperCase()}</h2>
               </div>
             </Grid>
           ))}

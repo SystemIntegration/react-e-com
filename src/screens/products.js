@@ -9,7 +9,6 @@ import Header from './header';
 function Products() {
     const location = useLocation();
     const product = location.state;
-    console.log('Data', product);
 
     const [image, setImage] = useState(product.images[0])
     const [selectedImage, setSelectedImage] = useState(product.images[0]);
@@ -17,6 +16,8 @@ function Products() {
     const [openDrawer, setOpenDrawer] = useState(false);
     const [products, setProducts] = useState([])
     const category = product.category;
+
+    console.log('cartItems', cartItems);
 
     useEffect(() => {
         const rData = localStorage.getItem("cart");
@@ -107,7 +108,7 @@ function Products() {
 
     // Calculate the original price
     const originalPrice = (discountedPrice,discountPercentage) => { return(discountedPrice / (1 - (discountPercentage / 100)))} ;
-
+    localStorage.setItem("cart", JSON.stringify([]))
     return (
         <div>
             <Header value={false}/>

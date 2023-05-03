@@ -7,11 +7,6 @@ import { Paper } from '@mui/material';
 
 function Bottom(props) {
     const [value, setValue] = useState(0);
-
-    const handleCategoryClick = () => {
-        // setValue(2);
-      };
-
     props.OnTabChange(value);
 
     return (
@@ -26,8 +21,7 @@ function Bottom(props) {
                 style={{ justifyContent: 'center', alignContent: 'center', height: '3rem'}}
             >
                 <BottomNavigationAction label="All" icon={<StorefrontIcon />} />
-                <BottomNavigationAction label="Category" icon={<CategoryIcon />} onClick={handleCategoryClick}/>
-                <BottomNavigationAction label="Products" icon={<CategoryIcon />} />
+                <BottomNavigationAction label="Category" icon={<CategoryIcon />}/>
             </BottomNavigation>
         </Paper >
     );

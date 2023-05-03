@@ -3,6 +3,7 @@ import { BrowserRouter,Route, Routes } from 'react-router-dom';
 import MainPage from "./screens/mainPage";
 import SignUp from "./screens/signUp";
 import Products from "./screens/products";
+import ProductsList from "./screens/productsList";
 
 
 function App() {
@@ -15,6 +16,8 @@ function App() {
           <Route path="/signUp" element={<SignUp />}>
           </Route>
           <Route path="/product" element={<Products />}>
+          </Route>
+          <Route path="/productList" element={<ProductsList />}>
           </Route>
         </Routes>
       </BrowserRouter>
