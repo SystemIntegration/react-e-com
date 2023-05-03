@@ -107,11 +107,11 @@ function Products() {
     };
 
     // Calculate the original price
-    const originalPrice = (discountedPrice,discountPercentage) => { return(discountedPrice / (1 - (discountPercentage / 100)))} ;
-    localStorage.setItem("cart", JSON.stringify([]))
+    const originalPrice = (discountedPrice, discountPercentage) => { return (discountedPrice / (1 - (discountPercentage / 100))) };
+
     return (
         <div>
-            <Header value={false}/>
+            <Header value={false} />
             <div style={{ display: 'flex', justifyContent: 'flex-start', margin: '1rem 1rem' }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', margin: '1rem 1rem' }}>
                     <div style={{ paddingTop: '3rem' }}>
@@ -149,44 +149,44 @@ function Products() {
                     <div style={{ display: 'flex', justifyContent: 'flex-start', alignItems: 'center' }}>
                         <p style={{ fontSize: '3rem', margin: '0' }}>${product.price}</p>
                         <s style={{ fontSize: '2rem', marginLeft: '1rem' }}>
-                            ${Math.floor(originalPrice(product.price,product.discountPercentage))}</s>
+                            ${Math.floor(originalPrice(product.price, product.discountPercentage))}</s>
                         <h4 style={{ color: 'green', marginLeft: "1rem" }}>{product.discountPercentage}% Off</h4>
                     </div>
                     <Button style={{ fontSize: '1.5rem', borderRadius: '12px', marginTop: '10rem', backgroundColor: '#337DEF', color: '#fcc729' }} onClick={() => handleAddToCart(product)}>Add to cart</Button>
                     <Button disabled={cartItems.length > 0 ? false : true} style={{ fontSize: '1.5rem', borderRadius: '12px', marginTop: '10rem', marginLeft: '1rem', backgroundColor: '#337DEF', color: '#fcc729' }} onClick={() => handleRemoveFromCart(product)} >Remove from cart</Button>
                 </div>
             </div>
-            <div style={{ textAlign: 'center', display:'flex', margin:'2rem 0' }}>
+            <div style={{ textAlign: 'center', display: 'flex', margin: '2rem 0' }}>
                 <hr style={{ borderTop: '1px solid black', width: '40%', margin: 'auto' }} />
-                <span style={{fontSize:'1.5rem'}}>Suggestion for you</span>
+                <span style={{ fontSize: '1.5rem' }}>Suggestion for you</span>
                 <hr style={{ borderTop: '1px solid black', width: '40%', margin: 'auto' }} />
             </div>
 
             {/* suggestion */}
-            <Grid container spacing={2} style={{marginBottom:'4rem'}}>
+            <Grid container spacing={2} style={{ marginBottom: '4rem' }}>
                 {products.map(product => (
                     <Grid key={product.id} item lg={4} md={6} sm={12} xs={12}>
-                       <div style={{ display: 'flex', margin: '1rem 1rem' }}>
-                    <div>
-                      <Link to='/product' state={product}>
-                        <img className="img" src={product.thumbnail} alt="" />
-                      </Link>
-                    </div>
-                    <div style={{ marginLeft: '2rem' }}>
-                      <p className="title">{product.title}</p>
-                      <div className="priceOff">
-                        <h4 style={{ color: 'green' }}>{product.discountPercentage}% Off</h4>
-                        <Rating
-                          name="simple-controlled"
-                          value={product.rating}
-                          className="rating"
-                        />
-                      </div>
-                      <div>
-                        <p className="price" >${product.price}</p>
-                      </div>
-                    </div>
-                  </div>
+                        <div style={{ display: 'flex', margin: '1rem 1rem' }}>
+                            <div>
+                                <Link to='/product' state={product}>
+                                    <img className="img" src={product.thumbnail} alt="" />
+                                </Link>
+                            </div>
+                            <div style={{ marginLeft: '2rem' }}>
+                                <p className="title">{product.title}</p>
+                                <div className="priceOff">
+                                    <h4 style={{ color: 'green' }}>{product.discountPercentage}% Off</h4>
+                                    <Rating
+                                        name="simple-controlled"
+                                        value={product.rating}
+                                        className="rating"
+                                    />
+                                </div>
+                                <div>
+                                    <p className="price" >${product.price}</p>
+                                </div>
+                            </div>
+                        </div>
                     </Grid>
                 ))}
             </Grid>
@@ -204,34 +204,39 @@ function Products() {
             </Paper>
             {/* Cart details */}
             <Dialog anchor="right" open={openDrawer} onClose={handleCloseDrawer}>
-                <div className="cart-item" style={{ width: '38rem', height: '30rem', textAlign: 'center' }}>
-                    <table style={{ width: '100%' }}>
-                        <thead>
-                            <tr>
-                                <td></td>
-                                <td>Product Name</td>
-                                <td>Product Price</td>
-                                <td>Product QTY</td>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {cartItems.map(item => (
-                                <tr key={item.id} >
-                                    <td><img src={item.thumbnail} style={{ width: '5rem', height: '5rem', borderRadius: '33%' }} /></td>
-                                    <td><p>{item.title}</p></td>
-                                    <td><p>${item.price * item.quantity}</p></td>
-                                    <td>
-                                        <button onClick={() => handleRemoveFromCart(item)} style={{ marginRight: '1rem' }}>-</button>
-                                        <span style={{ marginRight: '1rem' }}>{item.quantity}</span>
-                                        <button onClick={() => handleAddToCart(item)}>+</button>
-                                    </td>
+                <div className="cart-container" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                    <div className="cart-items" style={{ flex: 1, width: '38rem', textAlign: 'center' }}>
+                        <table style={{ width: '100%' }}>
+                            <thead>
+                                <tr>
+                                    <td></td>
+                                    <td>Product Name</td>
+                                    <td>Product Price</td>
+                                    <td>Product QTY</td>
                                 </tr>
-                            ))}
-                        </tbody>
-                    </table>
-                    <p>Total: ${calculateTotalPrice()}</p>
-                    <Link to='/signUp'><button>Checkout</button></Link>
+                            </thead>
+                            <tbody>
+                                {cartItems.map(item => (
+                                    <tr key={item.id}>
+                                        <td><img src={item.thumbnail} style={{ width: '5rem', height: '5rem', borderRadius: '33%' }} /></td>
+                                        <td><p>{item.title}</p></td>
+                                        <td><p>${item.price * item.quantity}</p></td>
+                                        <td>
+                                            <button onClick={() => handleRemoveFromCart(item)} style={{ marginRight: '1rem' }}>-</button>
+                                            <span style={{ marginRight: '1rem' }}>{item.quantity}</span>
+                                            <button onClick={() => handleAddToCart(item)}>+</button>
+                                        </td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                    </div>
+                    <div className="cart-total" style={{ height: '5rem', display: 'flex', alignItems: 'center' }}>
+                        <p style={{ marginRight: '1rem' }}>Total: ${calculateTotalPrice()}</p>
+                        <Link to='/signUp'><button>Checkout</button></Link>
+                    </div>
                 </div>
+
             </Dialog>
         </div>
     )
