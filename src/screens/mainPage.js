@@ -43,7 +43,7 @@ function MainPage() {
     <>
       <div className="products-container">
         {/* Header part */}
-        <Header value={true} onSearch={handleSearch} />
+        <Header value={true} onSearch={handleSearch} tabValue={tabValue}/>
         {tabValue === 0 ?
         <div style={{ display: 'flex',overflow:'auto',height:'83vh' }}>
           <div>

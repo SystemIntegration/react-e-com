@@ -8,7 +8,7 @@ function Header(props) {
         setSearchText(value)
     };
 
-    if(props.value){
+    if(props.value && props.tabValue === 0){
         props.onSearch(searchText);
     }
 
@@ -42,7 +42,7 @@ function Header(props) {
                             </Typography>
                         </div>
                         <div style={{ display: 'flex', justifyContent: 'center', alignContent: 'center' }}>
-                            {props.value === true &&
+                            {(props.value === true && props.tabValue === 0) &&
                             <div className='input' style={{ textAlign: 'center' }}>
                                 <input type="search" placeholder='Search Product' className="inputTagCSS" onChange={(e) =>  handleSearch(e.target.value) }
                                     />
