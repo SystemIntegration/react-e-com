@@ -6,46 +6,29 @@ import Header from "./header";
 
 function MainPage() {
   const [products, setProducts] = useState([])
-  const [value, setValue] = useState('All');
-  const [categories, setCategories] = useState([]);
   const [searchResult, setSearchResult] = useState('');
 
   useEffect(() => {
     // method for get data from API
     const API = async () => {
-      const URL = value == "All" ? url : (urlCategory + value);
-      const response = await fetch(URL)
+      const response = await fetch(url)
       const json = await response.json()
       setProducts(json.products)
       // For check response please uncomment below line.
       // console.log('response', json.products);
-
-      const responseList = await fetch(urlCategoryList)
-      const jsonList = await responseList.json()
-      setCategories(jsonList)
-      // For check response please uncomment below line.
-      // console.log('response', jsonList);
     }
     API();
-  }, [value])
-
-  const handleChange = (event) => {
-    setValue(event.target.value);
-  };
-
-
+  }, [])
 
   const handleSearch = (searchText) => {
     setSearchResult(searchText);
   };
-
 
   // mainTask list for show in display.
   const filteredData = products.filter((t) =>
     // console.log('searchResult', t.title.toLowerCase().includes(searchResult.toLowerCase())),
     t.title.toLowerCase().includes(searchResult.toLowerCase())
   );
-  console.log('searchResult', filteredData);
 
   return (
     <>
@@ -53,31 +36,11 @@ function MainPage() {
         {/* Header part */}
         <Header value={true} onSearch={handleSearch} />
         <div style={{ display: 'flex' }}>
-          <div className="leftDiv">
-            <h3>Shop By category</h3>
-            <FormControl style={{ margin: '1rem' }}>
-              <RadioGroup
-                aria-labelledby="demo-controlled-radio-buttons-group"
-                name="controlled-radio-buttons-group"
-                value={value}
-                onChange={handleChange}
-              >
-                <FormControlLabel value="All" control={<Radio />} label="ALL" />
-                {
-                  categories.map((data) => {
-                    return (
-                      <FormControlLabel value={data} control={<Radio />} label={data.toUpperCase()} />
-                    )
-                  })
-                }
-              </RadioGroup>
-            </FormControl>
-          </div>
-          <div className="rightDiv">
+          <div>
             {/* Main content part */}
             <Grid container spacing={2}>
               {filteredData.map(product => (
-                <Grid key={product.id} item lg={6}>
+                <Grid key={product.id} item lg={4} md={6} sm={12} xs={12}>
                   <div style={{ display: 'flex', margin: '1rem 1rem' }}>
                     <div>
                       <Link to='/product' state={product}>
