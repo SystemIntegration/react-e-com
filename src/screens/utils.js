@@ -14,7 +14,6 @@ import mobilePhone from "./images/mobilePhone.png"
 import laptop from "./images/laptop.png"
 import car from "./images/car.png"
 import motorbike from "./images/motorbike.png"
-import groceryCart from "./images/groceryCart.png"
 import houseDecoration from "./images/houseDecoration.png"
 import furniture from "./images/furniture.png"
 import lamp from "./images/lamp.png"
@@ -90,10 +89,6 @@ export const mainCategoryData = [{
         },
     ],
     "Home Decoration": [
-        {
-            title: "groceries",
-            icon: groceryCart,
-        },
         {
             title: "home-decoration",
             icon: houseDecoration,

@@ -39,23 +39,24 @@ function Category() {
 
   return (
     <div style={{ display: 'flex' }}>
-      <div style={{ background: 'gray', height: '83vh', width: '10%', textAlign: 'center' }}>
+      <div style={{ background: 'gray', height: '83vh', width: '10%', textAlign: 'center', overflow: 'auto' }}>
         {categoryName.map((data) => {
-          return (<div style={{ background: selectedCategory === data.name ? 'white' : 'gray', padding: '1rem', cursor: 'pointer' }}
-            onClick={() => handleCategory(data.name)}
-          >
-            <img src={data.icon} alt="" style={{ height: '2rem', width: '2rem' }} />
+          return (<div style={{
+            background: selectedCategory === data.name ? 'white' : 'gray',
+            paddingTop: '2rem', cursor: 'pointer'
+          }}
+            onClick={() => handleCategory(data.name)}>
+            <img src={data.icon} alt="" style={{ height: '2.1rem', width: '2.1rem' }} />
             <p style={{ margin: 0 }}>
               {data.name}
             </p>
           </div>)
         })}
       </div>
-      <div style={{ background: 'white', height: '83vh', width: '90%' }}>
-        <Grid container spacing={2} style={{textAlign:'center',margin:'1rem 0 0 1rem' }}>
+      <div style={{ background: 'white', height: '83vh', width: '90%', overflow: 'auto' }}>
+        <Grid container spacing={2} style={{ textAlign: 'center', marginTop: '1rem' }}>
           {userData.map(product => (
-            <Grid key={product.id} item lg={3}
-            style={{ margin:'1rem' }}  >
+            <Grid item lg={4} md={6} sm={12} xs={12} style={{ padding: '1rem' }} >
               <div>
                 <img src={product.icon} alt="" style={{ height: '2rem', width: '2rem' }} />
                 <h2 style={{ marginLeft: "1rem" }}>{product.title.toUpperCase()}</h2>
