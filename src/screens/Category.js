@@ -64,10 +64,10 @@ function Category() {
           {userData.map(product => (
             <Grid item lg={4} md={6} sm={12} xs={12} style={{ padding: '2rem', cursor: 'pointer' }} onClick={() => handleCategoryName(product.title)}>
               <div style={{ color: categoryName === product.title ? 'green' : 'black' }} >
-                <Link to="/productList" state={categoryName} style={{ textDecoration: 'none' }}>
+                <Link to="/productList" state={product.title} style={{ textDecoration: 'none' }}>
                   <img src={product.icon} alt="" style={{ height: '2rem', width: '2rem' }} />
-                </Link>
                 <h2 style={{ marginLeft: "1rem", color: categoryName === product.title ? 'green' : 'black', }}>{product.title.toUpperCase()}</h2>
+                </Link>
               </div>
             </Grid>
           ))}
