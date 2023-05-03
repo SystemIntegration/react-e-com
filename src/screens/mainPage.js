@@ -3,10 +3,19 @@ import { useEffect, useState } from "react"
 import { Link } from "react-router-dom";
 import { url, urlCategory, urlCategoryList } from "../apiHandler";
 import Header from "./header";
+import Bottom from "./bottom";
+import Category from "./Category";
 
 function MainPage() {
   const [products, setProducts] = useState([])
   const [searchResult, setSearchResult] = useState('');
+  const [tabValue, setTabValue] = useState('');
+
+  const handleTab = (searchText) => {
+    setTabValue(searchText);
+  };
+
+  console.log('tabValue', tabValue);
 
   useEffect(() => {
     // method for get data from API
@@ -35,7 +44,8 @@ function MainPage() {
       <div className="products-container">
         {/* Header part */}
         <Header value={true} onSearch={handleSearch} />
-        <div style={{ display: 'flex' }}>
+        {tabValue === 0 ?
+        <div style={{ display: 'flex',overflow:'auto',height:'83vh' }}>
           <div>
             {/* Main content part */}
             <Grid container spacing={2}>
@@ -66,10 +76,11 @@ function MainPage() {
               ))}
             </Grid>
           </div>
-        </div>
+        </div> : <Category /> }
       </div>
+      <Bottom OnTabChange={handleTab} />
     </>
   );
 }
 
-export default MainPage
+export default MainPage;
