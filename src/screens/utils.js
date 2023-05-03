@@ -114,7 +114,7 @@ export const mainCategoryData = [{
     ],
 }]
 
-export const categoryName = [
+export const categoryNames = [
     {
         name: "Men's Fashion",
         icon: man

@@ -105,6 +105,9 @@ function Products() {
         return cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
     };
 
+    // Calculate the original price
+    const originalPrice = (discountedPrice,discountPercentage) => { return(discountedPrice / (1 - (discountPercentage / 100)))} ;
+
     return (
         <div>
             <Header value={false}/>
@@ -144,6 +147,8 @@ function Products() {
                     <p style={{ fontSize: '1.6rem', margin: '0' }}>{product.description}</p>
                     <div style={{ display: 'flex', justifyContent: 'flex-start', alignItems: 'center' }}>
                         <p style={{ fontSize: '3rem', margin: '0' }}>${product.price}</p>
+                        <s style={{ fontSize: '2rem', marginLeft: '1rem' }}>
+                            ${Math.floor(originalPrice(product.price,product.discountPercentage))}</s>
                         <h4 style={{ color: 'green', marginLeft: "1rem" }}>{product.discountPercentage}% Off</h4>
                     </div>
                     <Button style={{ fontSize: '1.5rem', borderRadius: '12px', marginTop: '10rem', backgroundColor: '#337DEF', color: '#fcc729' }} onClick={() => handleAddToCart(product)}>Add to cart</Button>

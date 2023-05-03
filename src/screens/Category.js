@@ -1,15 +1,22 @@
 import React, { useState } from 'react'
-import { categoryName, mainCategoryData } from './utils';
+import { categoryNames, mainCategoryData } from './utils';
 import { Grid } from '@mui/material';
 
-function Category() {
+function Category(props) {
 
-  const [selectedCategory, setSelectedCategory] = useState(categoryName[0].name);
-  const [category, setCategory] = useState(categoryName[0].name);
+  const [selectedCategory, setSelectedCategory] = useState(categoryNames[0].name);
+  const [category, setCategory] = useState(categoryNames[0].name);
+  const [categoryName, setCategoryName] = useState("");
+
 
   const handleCategory = (category) => {
     setSelectedCategory(category);
     setCategory(category)
+  }
+
+  const handleCategoryName = (categoryName) => {
+    setCategoryName(categoryName)
+    props.Category(categoryName)
   }
 
   const filterData = (arr, key) => {
@@ -33,7 +40,6 @@ function Category() {
     }
   };
 
-
   // Call the filterData function to get the data for the specified key
   const userData = filterData(mainCategoryData, category);
 
@@ -56,8 +62,8 @@ function Category() {
       <div style={{ background: 'white', height: '83vh', width: '90%', overflow: 'auto' }}>
         <Grid container spacing={2} style={{ textAlign: 'center', marginTop: '1rem' }}>
           {userData.map(product => (
-            <Grid item lg={4} md={6} sm={12} xs={12} style={{ padding: '1rem' }} >
-              <div>
+            <Grid item lg={4} md={6} sm={12} xs={12} style={{ padding: '1rem', cursor: 'pointer' }} onClick={() => handleCategoryName(product.title)}>
+              <div >
                 <img src={product.icon} alt="" style={{ height: '2rem', width: '2rem' }} />
                 <h2 style={{ marginLeft: "1rem" }}>{product.title.toUpperCase()}</h2>
               </div>

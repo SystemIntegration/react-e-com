@@ -10,6 +10,7 @@ function MainPage() {
   const [products, setProducts] = useState([])
   const [searchResult, setSearchResult] = useState('');
   const [tabValue, setTabValue] = useState('');
+  const [category, setCategory] = useState('');
 
   const handleTab = (searchText) => {
     setTabValue(searchText);
@@ -46,38 +47,69 @@ function MainPage() {
         <Header value={true} onSearch={handleSearch} tabValue={tabValue}/>
         {tabValue === 0 ?
         <div style={{ display: 'flex',overflow:'auto',height:'83vh' }}>
-          <div>
-            {/* Main content part */}
-            <Grid container spacing={2}>
-              {filteredData.map(product => (
-                <Grid key={product.id} item lg={4} md={6} sm={12} xs={12}>
-                  <div style={{ display: 'flex', margin: '1rem 1rem' }}>
-                    <div>
-                      <Link to='/product' state={product}>
-                        <img className="img" src={product.thumbnail} alt="" />
-                      </Link>
-                    </div>
-                    <div style={{ marginLeft: '2rem' }}>
-                      <p className="title">{product.title}</p>
-                      <div className="priceOff">
-                        <h4 style={{ color: 'green' }}>{product.discountPercentage}% Off</h4>
-                        <Rating
-                          name="simple-controlled"
-                          value={product.rating}
-                          className="rating"
-                        />
-                      </div>
+            <div>
+              {/* Main content part */}
+              <Grid container spacing={2}>
+                {filteredData.map(product => (
+                  <Grid key={product.id} item lg={4} md={6} sm={12} xs={12}>
+                    <div style={{ display: 'flex', margin: '1rem 1rem' }}>
                       <div>
-                        <p className="price" >${product.price}</p>
+                        <Link to='/product' state={product}>
+                          <img className="img" src={product.thumbnail} alt="" />
+                        </Link>
+                      </div>
+                      <div style={{ marginLeft: '2rem' }}>
+                        <p className="title">{product.title}</p>
+                        <div className="priceOff">
+                          <h4 style={{ color: 'green' }}>{product.discountPercentage}% Off</h4>
+                          <Rating
+                            name="simple-controlled"
+                            value={product.rating}
+                            className="rating"
+                          />
+                        </div>
+                        <div>
+                          <p className="price" >${product.price}</p>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                </Grid>
-              ))}
-            </Grid>
-          </div>
-        </div> : <Category /> }
-      </div>
+                  </Grid>
+                ))}
+              </Grid>
+            </div>
+          </div> : (tabValue === 1 ? <Category Category={setCategory}/> :
+            <>
+              {/* Main content part */}
+              <Grid container spacing={2}>
+                {filteredData.map(product => (
+                  <Grid key={product.id} item lg={4} md={6} sm={12} xs={12}>
+                    <div style={{ display: 'flex', margin: '1rem 1rem' }}>
+                      <div>
+                        <Link to='/product' state={product}>
+                          <img className="img" src={product.thumbnail} alt="" />
+                        </Link>
+                      </div>
+                      <div style={{ marginLeft: '2rem' }}>
+                        <p className="title">{product.title}</p>
+                        <div className="priceOff">
+                          <h4 style={{ color: 'green' }}>{product.discountPercentage}% Off</h4>
+                          <Rating
+                            name="simple-controlled"
+                            value={product.rating}
+                            className="rating"
+                          />
+                        </div>
+                        <div>
+                          <p className="price" >${product.price}</p>
+                        </div>
+                      </div>
+                    </div>
+                  </Grid>
+                ))}
+              </Grid>
+            </>
+          )}
+      </div >
       <Bottom OnTabChange={handleTab} />
     </>
   );
