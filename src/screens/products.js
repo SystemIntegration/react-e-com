@@ -205,27 +205,27 @@ function Products() {
             </Paper>
             {/* Cart details */}
             <Dialog anchor="right" open={openDrawer} onClose={handleCloseDrawer}>
-                <div className="cart-container" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                    <div className="cart-items" style={{ flex: 1, width: '38rem', textAlign: 'center' }}>
+                <div className="cart-container" >
+                    <div className="cart-items" >
                         <table style={{ width: '100%' }}>
                             <thead>
                                 <tr>
                                     <td></td>
-                                    <td>Product Name</td>
-                                    <td>Product Price</td>
-                                    <td>Product QTY</td>
+                                    <td style={{width:'7rem'}} >Product Name</td>
+                                    <td style={{width:'7rem'}} >Product Price</td>
+                                    <td style={{width:'7rem'}} >Product QTY</td>
                                 </tr>
                             </thead>
                             <tbody>
                                 {cartItems.map(item => (
                                     <tr key={item.id}>
-                                        <td><img src={item.thumbnail} style={{ width: '5rem', height: '5rem', borderRadius: '33%' }} /></td>
+                                        <td><img className='cartImg' src={item.thumbnail}/></td>
                                         <td><p>{item.title}</p></td>
                                         <td><p>${item.price * item.quantity}</p></td>
                                         <td>
-                                            <button onClick={() => handleRemoveFromCart(item)} style={{ marginRight: '1rem' }}>-</button>
-                                            <span style={{ marginRight: '1rem' }}>{item.quantity}</span>
-                                            <button onClick={() => handleAddToCart(item)}>+</button>
+                                            <button onClick={() => handleRemoveFromCart(item)}>-</button>
+                                            <span className='addButton'>{item.quantity}</span>
+                                            <button className='addButton' onClick={() => handleAddToCart(item)}>+</button>
                                         </td>
                                     </tr>
                                 ))}

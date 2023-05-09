@@ -138,6 +138,25 @@ margin: 0.5rem;
   margin-left: 2rem !important;
 }
 
+.cart-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.cart-container {
+  flex: 1;
+  text-align: center;
+}
+.cartImg {
+  width: 5rem;
+  height: 5rem;
+  border-radius: 33%;
+}
+.addButton {
+ margin-left: 1rem;
+}
+
 @media screen and (max-width: 640px) {
   .leftDiv {
     width: 30%;
@@ -160,6 +179,14 @@ margin: 0.5rem;
 
   .rating {
     margin-left: 0;
+  }
+
+  .cartImg {
+    width: 3rem;
+    height: 3rem;
+  }
+  .addButton {
+   margin-left: 0.5rem;
   }
 }
 
@@ -250,6 +277,16 @@ margin: 0.5rem;
   }
 }
 
+@media screen and (max-width: 355px) {
+  .cartImg {
+    width: 1.5rem;
+    height: 2.5rem;
+  }
+
+  .addButton {
+    margin-left: 0.1rem;
+  }
+}
 @media screen and (max-width: 410px) {
   .inputTagCSS {
     width: 6rem;
