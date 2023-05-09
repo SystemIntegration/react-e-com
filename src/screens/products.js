@@ -17,12 +17,14 @@ function Products() {
     const [products, setProducts] = useState([])
     const category = product.category;
 
-    console.log('cartItems', cartItems);
+    console.log('cartItems', product.category);
 
     useEffect(() => {
         const rData = localStorage.getItem("cart");
-        setCartItems(JSON.parse(rData));
-        console.log('cart', JSON.parse(rData));
+        if (rData !== null) {
+            setCartItems(JSON.parse(rData));
+            console.log('cart', JSON.parse(rData));
+        }
     }, [])
 
     useEffect(() => {
