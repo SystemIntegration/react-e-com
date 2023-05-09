@@ -6,13 +6,15 @@
 ## Features
   - Add to cart.
   - Remove to cart.
-  - view full specification of product.
-  - checkout functionality.
+  - View full specification of product.
+  - Add suggestion part.
+  - Sort products by category.
+  - Checkout functionality.
 
 ## Technologies Used
   - React
   - Material ui
-          - For API, We use dummyjson.com website.
+  - For API, We use dummyjson.com website.
 
 
 ## Getting Started
@@ -32,12 +34,14 @@ In the project directory, you can run:
 ## Screenshots
     -Main UI
 ![MainUI.png](./MainUI.png)
-
-    - Product Details
-![ProductDetails.png](./ProductDetails.png)
-
-    - Cart
-![Cart.png](./Cart.png)
+    -Category Page
+![CategoryPage.png](./CategoryPage.png)
+    -Product detail
+![Product_details.png](./Product_details.png)
+    -Suggestion page
+![SuggestionPage.png](./SuggestionPage.png)
+    -Cart Page
+![cartPage.png](./cartPage.png)
 
 ## Demo
    - You can try out the application at <a href="https://systemintegration.github.io/react-js-shopping">https://systemintegration.github.io/react-js-shopping</a>
