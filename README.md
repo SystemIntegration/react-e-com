@@ -34,14 +34,19 @@ In the project directory, you can run:
 ## Screenshots
     -Main UI
 ![MainUI.png](./MainUI.png)
+
     -Category Page
 ![CategoryPage.png](./CategoryPage.png)
+
     -Product detail
 ![Product_details.png](./Product_details.png)
+
     -Suggestion page
 ![SuggestionPage.png](./SuggestionPage.png)
+
     -Cart Page
-![cartPage.png](./cartPage.png)
+![CartPage.png](./CartPage.png)
+
 
 ## Demo
    - You can try out the application at <a href="https://systemintegration.github.io/react-js-shopping">https://systemintegration.github.io/react-js-shopping</a>
