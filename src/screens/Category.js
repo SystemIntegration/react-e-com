@@ -45,7 +45,7 @@ function Category() {
 
   return (
     <div style={{ display: 'flex' }}>
-      <div style={{ background: 'gray', height: '83vh', width: '10%', textAlign: 'center', overflow: 'auto' }}>
+      <div className='leftDiv'>
         {categoryNames.map((data) => {
           return (<div style={{
             background: selectedCategory === data.name ? 'white' : 'gray',
@@ -59,7 +59,7 @@ function Category() {
           </div>)
         })}
       </div>
-      <div style={{ background: 'white', height: '83vh', width: '90%', overflow: 'auto' }}>
+      <div className='rightDiv'>
         <Grid container spacing={2} style={{ textAlign: 'center', marginTop: '1rem' }}>
           {userData.map(product => (
             <Grid item lg={4} md={6} sm={12} xs={12} style={{ padding: '2rem', cursor: 'pointer' }} onClick={() => handleCategoryName(product.title)}>

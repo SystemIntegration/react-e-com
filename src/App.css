@@ -1,11 +1,13 @@
-.css-ohwg9z{
+.css-ohwg9z {
   text-align: center;
   margin-top: 5rem;
 }
-.css-1m9128y{
+
+.css-1m9128y {
   margin: 0;
   margin-bottom: 5rem;
 }
+
 .inputTagCSS {
   height: 2rem;
   padding: 3px 10px;
@@ -22,8 +24,121 @@
   box-shadow: 1px 2px 3px black;
 }
 
-.imageForShopping{
+.imageForShopping {
   height: 3rem;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 30px;
+  background: rgb(219, 219, 219);
+}
+
+.leftDiv {
+  background: gray;
+  height: 83vh;
+  width: 20%;
+  text-align: center;
+  overflow: auto;
+  padding-bottom: 5rem;
+}
+
+.rightDiv {
+  background: white;
+  height: 83vh;
+  width: 80%;
+  overflow: auto;
+  padding-bottom: 3rem;
+}
+
+.priceOff {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.img {
+  height: 10rem;
+  width: 10rem;
+  border-radius: 20px;
+}
+
+.rating {
+  margin-left: 1rem;
+}
+
+.title {
+  margin: 0;
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.price {
+  font-size: 2rem;
+  margin: 0;
+}
+
+.logoName {
+  font-size: 2.5rem !important;
+  color: #fcc729;
+  display: block;
+}
+
+@media screen and (max-width: 640px) {
+  .leftDiv {
+    width: 30%;
+  }
+
+  .rightDiv {
+    width: 70%;
+    margin: 0;
+  }
+
+  .logoName {
+    font-size: 2.0rem !important;
+  }
+}
+
+@media screen and (max-width: 430px) {
+  .priceOff {
+    display: block;
+  }
+
+  .rating {
+    margin-left: 0;
+  }
+}
+
+@media screen and (max-width: 470px) {
+  .logoName {
+    font-size: 1.5rem !important;
+  }
+}
+
+@media screen and (max-width: 380px) {
+  .img {
+    height: 8rem;
+    width: 8rem;
+  }
+
+  .price {
+    font-size: 1.5rem;
+  }
+
+  .title {
+    font-size: 1.2rem;
+  }
+
+  .logoName {
+    font-size: 1rem !important;
+  }
 }
 
 @media screen and (max-width: 585px) {
@@ -31,104 +146,13 @@
     width: 8rem;
   }
 }
+
 @media screen and (max-width: 410px) {
   .inputTagCSS {
     width: 6rem;
   }
+
   .imageForShopping {
     height: 1.5rem;
-  }
-}
-
-::-webkit-scrollbar{
-display: none;
-}
-::-webkit-scrollbar-track{
-  background: transparent;
-}
-::-webkit-scrollbar-thumb{
-  border-radius: 30px;
-  background: rgb(219, 219, 219);
-}
-
-.leftDiv{
-  width: 20%;
-  height: 88vh;
-  overflow: auto;
-  margin: 1rem 0 0 1rem;
-}
-
-.rightDiv{
-  width: 80%;
-  height: 88vh;
-  overflow: auto;
-  margin: 1rem 0 0 1rem;
-}
-
-.priceOff{
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-}
-
-.img{
-  height: 10rem;
-  width: 10rem;
-  border-radius: 20px;
-}
-
-.rating{
-  margin-left: 1rem;
-}
-
-.title{
-  margin: 0;
-  font-size: 2rem;
-  font-weight: bold;
-}
-
-.price{
-  font-size: 2rem;
-  margin: 0;
-}
-
-@media screen and (max-width: 920px) {
-  .leftDiv {
-    width: 30%;
-  }
-  .rightDiv {
-    width: 70%;
-  }
-}
-
-@media screen and (max-width: 640px) {
-  .leftDiv {
- display: none;
-  }
-  .rightDiv {
-    width: 100%;
-    margin:0;
-  }
-}
-
-@media screen and (max-width: 430px) {
-  .priceOff{
-    display: block;
-  }
-  .rating{
-    margin-left: 0;
-  }
-}
-
-@media screen and (max-width: 380px) {
-  .img{
-    height: 8rem;
-    width: 8rem;
-  }
-  .price{
-    font-size: 1.5rem;
-  }
-  .title{
-    font-size: 1.2rem;
   }
 }

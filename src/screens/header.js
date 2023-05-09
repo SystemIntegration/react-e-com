@@ -22,6 +22,7 @@ function Header(props) {
                             <img src="https://cdn-icons-png.flaticon.com/512/2331/2331970.png" className="imageForShopping" alt="logo" style={{ marginRight: '1rem' }} />
                             <Typography
                                 variant="h4"
+                                className='logoName'
                                 style={{
                                     color: '#fcc729',
                                     display: 'block',
@@ -30,8 +31,6 @@ function Header(props) {
                                 component="a"
                                 href="/home"
                                 sx={{
-                                    mr: 2,
-                                    display: { xs: 'none', md: 'flex' },
                                     fontFamily: 'monospace',
                                     fontWeight: 700,
                                     letterSpacing: '.3rem',

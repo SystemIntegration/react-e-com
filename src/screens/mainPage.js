@@ -39,7 +39,7 @@ function MainPage() {
         {/* Header part */}
         <Header value={true} onSearch={handleSearch} tabValue={tabValue}/>
         {tabValue === 0 ?
-        <div style={{ display: 'flex',overflow:'auto',height:'83vh' }}>
+        <div style={{ display: 'flex',overflow:'auto',marginBottom:'5rem' }}>
             <div>
               {/* Main content part */}
               <Grid container spacing={2}>
