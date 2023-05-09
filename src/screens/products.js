@@ -114,14 +114,16 @@ function Products() {
     return (
         <div>
             <Header value={false} />
-            <div style={{ display: 'flex', justifyContent: 'flex-start', margin: '1rem 1rem' }}>
-                <div style={{ display: 'flex', justifyContent: 'space-between', margin: '1rem 1rem' }}>
-                    <div style={{ paddingTop: '3rem' }}>
+            <div className='mainDivForProduct'>
+                <div className='leftSide'>
+                    <div style={{textAlign:'center',marginRight:'1rem'}}>
+                        <img src={image} alt="" className='bigImg' />
+                    </div>
+                    <div className='imagesOfProductDiv'>
                         {product.images.map((data) => {
                             return (
-                                <div style={{ margin: '1rem 1rem' }}>
-                                    <img src={data} alt="" style={{
-                                        width: '4rem', height: '4rem', cursor: 'pointer',
+                                <div className='imagesOfProducts'>
+                                    <img src={data} alt="" className='imagesOfProduct' style={{
                                         border: '2px solid black',
                                         boxShadow: selectedImage === data ? '0 0 2px 2px aqua' : 'none'
                                     }}
@@ -131,9 +133,6 @@ function Products() {
                                 </div>
                             )
                         })}
-                    </div>
-                    <div>
-                        <img src={image} alt="" style={{ width: '33rem', height: '30rem', marginLeft: '3rem', borderRadius: '10px' }} />
                     </div>
                 </div>
                 <div style={{ margin: '1rem' }}>
@@ -154,8 +153,8 @@ function Products() {
                             ${Math.floor(originalPrice(product.price, product.discountPercentage))}</s>
                         <h4 style={{ color: 'green', marginLeft: "1rem" }}>{product.discountPercentage}% Off</h4>
                     </div>
-                    <Button style={{ fontSize: '1.5rem', borderRadius: '12px', marginTop: '10rem', backgroundColor: '#337DEF', color: '#fcc729' }} onClick={() => handleAddToCart(product)}>Add to cart</Button>
-                    <Button disabled={cartItems.length > 0 ? false : true} style={{ fontSize: '1.5rem', borderRadius: '12px', marginTop: '10rem', marginLeft: '1rem', backgroundColor: '#337DEF', color: '#fcc729' }} onClick={() => handleRemoveFromCart(product)} >Remove from cart</Button>
+                    <Button className='addToCart' onClick={() => handleAddToCart(product)}>Add to cart</Button>
+                    <Button className='removeFromCart' disabled={cartItems.length > 0 ? false : true} onClick={() => handleRemoveFromCart(product)} >Remove from cart</Button>
                 </div>
             </div>
             <div style={{ textAlign: 'center', display: 'flex', margin: '2rem 0' }}>
