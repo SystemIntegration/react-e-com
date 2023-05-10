@@ -36,7 +36,8 @@ function ProductsList() {
     return (
         <>
             <Header value={true} onSearch={handleSearch} tabValue={0} />
-            <Grid container spacing={2} style={{ marginBottom: '4rem' }}>
+            <div style={{marginTop:'5rem'}}>
+            <Grid container spacing={2} >
                 {filteredData.map(product => (
                     <Grid key={product.id} item lg={4} md={6} sm={12} xs={12}>
                         <div style={{ display: 'flex', margin: '1rem 1rem' }}>
@@ -63,6 +64,7 @@ function ProductsList() {
                     </Grid>
                 ))}
             </Grid>
+            </div>
         </>
     )
 }

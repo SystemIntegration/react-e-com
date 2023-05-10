@@ -42,7 +42,7 @@ function MainPage() {
           <div style={{ display: 'flex', overflow: 'auto', marginBottom: '5rem' }}>
             <div>
               {/* Main content part */}
-              <Grid container spacing={2}>
+              <Grid container spacing={2} style={{marginTop:'2.5rem'}}>
                 {filteredData.map(product => (
                   <Grid key={product.id} item lg={4} md={6} sm={12} xs={12}>
                       <div style={{ display: 'flex', margin: '1rem 1rem' }}>
