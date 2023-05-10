@@ -149,6 +149,12 @@
   margin-left: 1rem;
 }
 
+.autoComplete {width:15rem;}
+.autoComplete label {top: -4px; color: white !important;}
+.autoComplete div {height: 45px;}
+.autoComplete fieldset {border-color: aliceblue !important;border-radius: 5rem;}
+.autoComplete input {color: aliceblue;}
+
 @media screen and (max-width: 330px) {
   .addToCart {
     font-size: 0.5rem !important;
