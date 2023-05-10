@@ -1,5 +1,6 @@
 import { AppBar, Box, Container, Toolbar, Typography } from '@mui/material'
 import React, { useState } from 'react'
+import { ReactComponent as Logo } from "./images/logo.svg"
 
 function Header(props) {
     const [searchText, setSearchText] = useState('');
@@ -14,17 +15,16 @@ function Header(props) {
 
 
     return (
-        <Box Box sx={{ flexGrow: 1 }}>
-            <AppBar position="static" style={{ background: '#337def' }}>
+        <Box>
+            <AppBar position="fixed" style={{ background: '#1470A7' }}>
                 <Container maxWidth="xl">
                     <Toolbar disableGutters style={{ display: 'flex', justifyContent: 'space-between', alignContent: 'center' }}>
-                        <div style={{ display: 'flex', justifyContent: 'center', alignContent: 'center' }}>
-                            <img src="https://cdn-icons-png.flaticon.com/512/2331/2331970.png" className="imageForShopping" alt="logo" style={{ marginRight: '1rem' }} />
+                        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                            <Logo style={{width:'3rem',height:'3rem', marginRight:'1rem'}}/>
                             <Typography
-                                variant="h4"
                                 className='logoName'
                                 style={{
-                                    color: '#fcc729',
+                                    color: '#fff',
                                     display: 'block',
                                 }}
                                 noWrap
@@ -33,7 +33,6 @@ function Header(props) {
                                 sx={{
                                     fontFamily: 'monospace',
                                     fontWeight: 700,
-                                    letterSpacing: '.3rem',
                                     textDecoration: 'none',
                                 }}
                             >
