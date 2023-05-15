@@ -1,4 +1,4 @@
-import {Grid,Rating } from "@mui/material"
+import { Grid, Rating } from "@mui/material"
 import { useEffect, useState } from "react"
 import { Link } from "react-router-dom";
 import { url } from "../apiHandler";
@@ -29,7 +29,6 @@ function MainPage() {
 
   // mainTask list for show in display.
   const filteredData = products.filter((t) =>
-    // console.log('searchResult', t.title.toLowerCase().includes(searchResult.toLowerCase())),
     t.title.toLowerCase().includes(searchResult.toLowerCase())
   );
 
@@ -45,27 +44,27 @@ function MainPage() {
               <Grid className="mainGrid" container spacing={2}>
                 {filteredData.map(product => (
                   <Grid key={product.id} item lg={4} md={6} sm={12} xs={12}>
-                      <div style={{ display: 'flex', margin: '1rem' }}>
-                        <div>
-                          <Link to='/product' state={product}>
+                    <div style={{ display: 'flex', margin: '1rem' }}>
+                      <div>
+                        <Link to='/product' state={product}>
                             <img className="img" src={product.thumbnail} alt="" style={{padding:'0.8rem', background:'gray'}}/>
-                          </Link>
+                        </Link>
+                      </div>
+                      <div style={{ marginLeft: '2rem' }}>
+                        <p className="title">{product.title}</p>
+                        <div className="priceOff">
+                          <h4 style={{ color: 'green' }}>{product.discountPercentage}% Off</h4>
+                          <Rating
+                            name="simple-controlled"
+                            value={product.rating}
+                            className="rating"
+                          />
                         </div>
-                        <div style={{ marginLeft: '2rem' }}>
-                          <p className="title">{product.title}</p>
-                          <div className="priceOff">
-                            <h4 style={{ color: 'green' }}>{product.discountPercentage}% Off</h4>
-                            <Rating
-                              name="simple-controlled"
-                              value={product.rating}
-                              className="rating"
-                            />
-                          </div>
-                          <div>
-                            <p className="price" >${product.price}</p>
-                          </div>
+                        <div>
+                          <p className="price" >${product.price}</p>
                         </div>
                       </div>
+                    </div>
                   </Grid>
                 ))}
               </Grid>

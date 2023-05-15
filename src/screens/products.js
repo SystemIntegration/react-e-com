@@ -113,7 +113,7 @@ function Products() {
 
     return (
         <div>
-            <Header value={false} />
+            <Header value={false} length={cartItems.length} openDrawer={handleClickOpenDrawer} error={error}  />
             <div style={{marginTop:'5.5rem'}}>
                 <div className='mainDivForProduct'>
                     <div className='leftSide'>
@@ -163,7 +163,6 @@ function Products() {
                     <span style={{ fontSize: '1.5rem' }}>Suggestion for you</span>
                     <hr style={{ borderTop: '1px solid black', width: '40%', margin: 'auto' }} />
                 </div>
-
                 {/* suggestion */}
                 <Grid container spacing={2} style={{ marginBottom: '4rem' }}>
                     {products.map(product => (
@@ -192,18 +191,6 @@ function Products() {
                         </Grid>
                     ))}
                 </Grid>
-                {/* bottom part */}
-                <Paper sx={{ position: 'fixed', bottom: 0, left: 0, right: 0 }} elevation={3}>
-                    <BottomNavigation
-                        style={{ justifyContent: 'end', alignContent: 'center', height: '3rem', backgroundColor: '#337def' }}
-                    >
-                        <BottomNavigationAction label="Recents" icon={
-                            <Badge badgeContent={cartItems.length} color="success">
-                                <ShoppingCartIcon color="action" />
-                            </Badge>
-                        } onClick={() => { cartItems.length > 0 ? handleClickOpenDrawer() : error() }} />
-                    </BottomNavigation>
-                </Paper>
                 {/* Cart details */}
                 <Dialog anchor="right" open={openDrawer} onClose={handleCloseDrawer}>
                     <div className="cart-container" >
