@@ -1,4 +1,4 @@
-import { AppBar, Autocomplete, Badge, Box, Container, IconButton, TextField, Toolbar, Typography } from '@mui/material'
+import { AppBar, Autocomplete, Badge, Box, Container, Dialog, IconButton, TextField, Toolbar, Typography } from '@mui/material'
 import React, { useEffect, useState } from 'react'
 import { ReactComponent as Logo } from "./images/logo.svg"
 import { Link } from 'react-router-dom';
@@ -11,6 +11,13 @@ function Header(props) {
     const [value, setValue] = useState("");
     const [searchingSeq, setSearchingSeq] = useState([]);
     const [cartLength, setCartLength] = useState([]);
+    const [showPopup, setShowPopup] = useState(false);
+
+    const cartItems = JSON.parse(localStorage.getItem("cart"));
+
+    const togglePopup = () => {
+        setShowPopup(!showPopup);
+    };
 
     useEffect(() => {
         // method for get data from API
@@ -46,6 +53,40 @@ function Header(props) {
     if (props.value && props.tabValue === 0) {
         props.onSearch(searchName);
     }
+
+    // Method for Close Drawer
+    const handleCloseDrawer = () => {
+        setShowPopup(false);
+    };
+
+    // method for Add item to cart
+    const handleAddToCart = (product) => {
+        const existingProductIndex = cartItems.findIndex(item => item.id === product.id);
+        if (existingProductIndex >= 0) {
+            const updatedCartItems = [...cartItems];
+            updatedCartItems[existingProductIndex].quantity += 1;
+            localStorage.setItem("cart", JSON.stringify(updatedCartItems))
+        } else {
+            const newCartItem = { ...product, quantity: 1 };
+            localStorage.setItem("cart", JSON.stringify([...cartItems, newCartItem]))
+
+        }
+    };
+
+    // method for remove item from cart
+    const handleRemoveFromCart = (product) => {
+        const existingProductIndex = cartItems.findIndex(item => item.id === product.id);
+        if (existingProductIndex >= 0) {
+            const updatedCartItems = [...cartItems];
+            if (updatedCartItems[existingProductIndex].quantity === 1) {
+                updatedCartItems.splice(existingProductIndex, 1);
+            } else {
+                updatedCartItems[existingProductIndex].quantity -= 1;
+            }
+            localStorage.setItem("cart", JSON.stringify(updatedCartItems))
+
+        }
+    };
 
     return (
         <Box>
@@ -105,9 +146,9 @@ function Header(props) {
                                     />
                                 </div>
                                 <div>
-                                    <IconButton aria-label="cart" onClick={() => { cartLength.length > 0 ? props.openDrawer() : props.error() }}>
+                                    <IconButton aria-label="cart" onClick={togglePopup}>
                                         <Badge badgeContent={cartLength.length} color="info">
-                                            <ShoppingCartIcon style={{color:'aliceblue'}} />
+                                            <ShoppingCartIcon style={{ color: 'aliceblue' }} />
                                         </Badge>
                                     </IconButton>
                                 </div>
@@ -116,6 +157,42 @@ function Header(props) {
                     </Toolbar>
                 </Container>
             </AppBar>
+            {showPopup && (
+                <Dialog anchor="right" open={showPopup} onClose={handleCloseDrawer}>
+                    <div className="cart-container" >
+                        <div className="cart-items" style={{ height: '80vh', overflow: 'auto' }} >
+                            <table style={{ width: '100%' }}>
+                                <thead>
+                                    <tr>
+                                        <td></td>
+                                        <td style={{ width: '7rem' }} >Product Name</td>
+                                        <td style={{ width: '7rem' }} >Product Price</td>
+                                        <td style={{ width: '7rem' }} >Product QTY</td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {cartItems.map(item => (
+                                        <tr key={item.id}>
+                                            <td><img className='cartImg' src={item.thumbnail} /></td>
+                                            <td><p>{item.title}</p></td>
+                                            <td><p>${item.price * item.quantity}</p></td>
+                                            <td>
+                                                <button onClick={() => handleRemoveFromCart(item)}>-</button>
+                                                <span className='addButton'>{item.quantity}</span>
+                                                <button className='addButton' onClick={() => handleAddToCart(item)}>+</button>
+                                            </td>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </table>
+                        </div>
+                        <div className="cart-total" style={{display: 'flex', alignItems: 'center' }}>
+                            <p style={{ marginRight: '1rem' }}>Total: ${cartItems.reduce((total, item) => total + item.price * item.quantity, 0)}</p>
+                            <Link to='/signUp'><button>Checkout</button></Link>
+                        </div>
+                    </div>
+                </Dialog>
+            )}
         </Box>
     )
 }

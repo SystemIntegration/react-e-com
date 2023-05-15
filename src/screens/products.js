@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
-import { Badge, BottomNavigation, BottomNavigationAction, Button, Dialog, Grid, Paper, Rating } from '@mui/material';
-import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-import Swal from "sweetalert2";
+import { Button, Grid, Rating } from '@mui/material';
 import { urlCategory } from '../apiHandler';
 import Header from './header';
 
@@ -13,11 +11,8 @@ function Products() {
     const [image, setImage] = useState(product.images[0])
     const [selectedImage, setSelectedImage] = useState(product.images[0]);
     const [cartItems, setCartItems] = useState([]);
-    const [openDrawer, setOpenDrawer] = useState(false);
     const [products, setProducts] = useState([])
     const category = product.category;
-
-    console.log('cartItems', product.category);
 
     useEffect(() => {
         const rData = localStorage.getItem("cart");
@@ -49,27 +44,6 @@ function Products() {
         setSelectedImage(image);
         setImage(image)
     }
-
-    // Method for Open Drawer
-    const handleClickOpenDrawer = () => {
-        setOpenDrawer(true);
-    };
-
-    // Method for through error when cart value is zero(0)
-    const error = () => {
-        return (
-            Swal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text: 'Your cart is empty!',
-            })
-        )
-    };
-
-    // Method for Close Drawer
-    const handleCloseDrawer = () => {
-        setOpenDrawer(false);
-    };
 
     // method for Add item to cart
     const handleAddToCart = (product) => {
@@ -103,18 +77,13 @@ function Products() {
         }
     };
 
-    // method for calculate TotalPrice
-    const calculateTotalPrice = () => {
-        return cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
-    };
-
     // Calculate the original price
     const originalPrice = (discountedPrice, discountPercentage) => { return (discountedPrice / (1 - (discountPercentage / 100))) };
 
     return (
         <div>
-            <Header value={false} length={cartItems.length} openDrawer={handleClickOpenDrawer} error={error}  />
-            <div style={{marginTop:'5.5rem'}}>
+            <Header value={false} />
+            <div style={{ marginTop: '5.5rem' }}>
                 <div className='mainDivForProduct'>
                     <div className='leftSide'>
                         <div style={{ textAlign: 'center', marginRight: '1rem' }}>
@@ -191,42 +160,6 @@ function Products() {
                         </Grid>
                     ))}
                 </Grid>
-                {/* Cart details */}
-                <Dialog anchor="right" open={openDrawer} onClose={handleCloseDrawer}>
-                    <div className="cart-container" >
-                        <div className="cart-items" >
-                            <table style={{ width: '100%' }}>
-                                <thead>
-                                    <tr>
-                                        <td></td>
-                                        <td style={{ width: '7rem' }} >Product Name</td>
-                                        <td style={{ width: '7rem' }} >Product Price</td>
-                                        <td style={{ width: '7rem' }} >Product QTY</td>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {cartItems.map(item => (
-                                        <tr key={item.id}>
-                                            <td><img className='cartImg' src={item.thumbnail} /></td>
-                                            <td><p>{item.title}</p></td>
-                                            <td><p>${item.price * item.quantity}</p></td>
-                                            <td>
-                                                <button onClick={() => handleRemoveFromCart(item)}>-</button>
-                                                <span className='addButton'>{item.quantity}</span>
-                                                <button className='addButton' onClick={() => handleAddToCart(item)}>+</button>
-                                            </td>
-                                        </tr>
-                                    ))}
-                                </tbody>
-                            </table>
-                        </div>
-                        <div className="cart-total" style={{ height: '5rem', display: 'flex', alignItems: 'center' }}>
-                            <p style={{ marginRight: '1rem' }}>Total: ${calculateTotalPrice()}</p>
-                            <Link to='/signUp'><button>Checkout</button></Link>
-                        </div>
-                    </div>
-
-                </Dialog>
             </div>
         </div>
     )
