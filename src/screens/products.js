@@ -51,12 +51,12 @@ function Products() {
         if (existingProductIndex >= 0) {
             const updatedCartItems = [...cartItems];
             updatedCartItems[existingProductIndex].quantity += 1;
-            setCartItems(updatedCartItems);
             localStorage.setItem("cart", JSON.stringify(updatedCartItems))
+            setCartItems(JSON.parse(localStorage.getItem("cart")));
         } else {
             const newCartItem = { ...product, quantity: 1 };
-            setCartItems([...cartItems, newCartItem]);
             localStorage.setItem("cart", JSON.stringify([...cartItems, newCartItem]))
+            setCartItems(JSON.parse(localStorage.getItem("cart")));
 
         }
     };
@@ -71,9 +71,8 @@ function Products() {
             } else {
                 updatedCartItems[existingProductIndex].quantity -= 1;
             }
-            setCartItems(updatedCartItems);
             localStorage.setItem("cart", JSON.stringify(updatedCartItems))
-
+            setCartItems(JSON.parse(localStorage.getItem("cart")));
         }
     };
 

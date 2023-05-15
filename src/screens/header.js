@@ -114,7 +114,7 @@ function Header(props) {
                             </Typography>
                         </div>
                         <div style={{ display: 'flex', justifyContent: 'center', alignContent: 'center' }}>
-                            <div className='inputField' style={{ textAlign: 'center',display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                            <div className='inputField' style={{ textAlign: 'center', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                                 <div style={{ textAlign: 'center', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                                     <Link to="/product" state={dataForSend[0]} style={{ pointerEvents: dataForSend.length === 0 && 'none' }}>
                                         <SearchIcon style={{ marginTop: '1rem', color: 'white' }} />
@@ -159,8 +159,8 @@ function Header(props) {
             </AppBar>
             {showPopup && (
                 <Dialog anchor="right" open={showPopup} onClose={handleCloseDrawer}>
-                    <div className="cart-container" >
-                        <div className="cart-items" style={{ height: '80vh', overflow: 'auto' }} >
+                    <div className="cart-container">
+                        {cartItems.length > 0 ? <> <div className="cart-items" style={{ height: '80vh', overflow: 'auto' }} >
                             <table style={{ width: '100%' }}>
                                 <thead>
                                     <tr>
@@ -186,10 +186,10 @@ function Header(props) {
                                 </tbody>
                             </table>
                         </div>
-                        <div className="cart-total" style={{display: 'flex', alignItems: 'center' }}>
-                            <p style={{ marginRight: '1rem' }}>Total: ${cartItems.reduce((total, item) => total + item.price * item.quantity, 0)}</p>
-                            <Link to='/signUp'><button>Checkout</button></Link>
-                        </div>
+                            <div className="cart-total" style={{ display: 'flex', alignItems: 'center' }}>
+                                <p style={{ marginRight: '1rem' }}>Total: ${cartItems.reduce((total, item) => total + item.price * item.quantity, 0)}</p>
+                                <Link to='/signUp'><button>Checkout</button></Link>
+                            </div></> : <h2  style={{width:'25rem'}}>You Cart is empty</h2>}
                     </div>
                 </Dialog>
             )}
