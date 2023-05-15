@@ -32,11 +32,7 @@ function Header(props) {
     let newOption = [];
     newOption = searchingSeq.map((data) => { return ({ label: data.title }) })
 
-    const dataForSend = searchingSeq.filter((data) => { return data.title ===  value.label}) ;
-
-    // const handleSearch = (value) => {
-    //     setSearchText(value)
-    // };
+    const dataForSend = searchingSeq.filter((data) => { return data.title === value.label });
 
     if (props.value && props.tabValue === 0) {
         props.onSearch(searchName);
@@ -47,7 +43,7 @@ function Header(props) {
         <Box>
             <AppBar position="fixed" style={{ background: '#1470A7' }}>
                 <Container maxWidth="xl">
-                    <Toolbar disableGutters style={{ display: 'flex', justifyContent: 'space-between', alignContent: 'center' }}>
+                    <Toolbar className='toolbar' disableGutters>
                         <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                             <Logo style={{ width: '3rem', height: '3rem', marginRight: '1rem' }} />
                             <Typography
@@ -69,9 +65,9 @@ function Header(props) {
                             </Typography>
                         </div>
                         <div style={{ display: 'flex', justifyContent: 'center', alignContent: 'center' }}>
-                            <div className='input' style={{ textAlign: 'center', width: '13rem' }}>
-                                <Link to="/product" state={dataForSend[0]}>
-                                    <SearchIcon />
+                            <div className='input' style={{ textAlign: 'center', width: '15rem', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                                <Link to="/product" state={dataForSend[0]} style={{ pointerEvents: dataForSend.length === 0 && 'none' }}>
+                                    <SearchIcon style={{ marginTop: '1rem', color: 'white' }} />
                                 </Link>
                                 <Autocomplete
                                     loading
@@ -98,7 +94,6 @@ function Header(props) {
                                         </>
                                     )}
                                 />
-                                {/* <input type="search" placeholder='Search Product' className="inputTagCSS" onChange={(e) => handleSearch(e.target.value)} */}
                             </div>
                         </div>
                     </Toolbar>

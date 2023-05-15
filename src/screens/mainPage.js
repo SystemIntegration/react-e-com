@@ -42,10 +42,10 @@ function MainPage() {
           <div style={{ display: 'flex', overflow: 'auto', marginBottom: '5rem' }}>
             <div>
               {/* Main content part */}
-              <Grid container spacing={2} style={{marginTop:'2.5rem'}}>
+              <Grid className="mainGrid" container spacing={2}>
                 {filteredData.map(product => (
                   <Grid key={product.id} item lg={4} md={6} sm={12} xs={12}>
-                      <div style={{ display: 'flex', margin: '1rem 1rem' }}>
+                      <div style={{ display: 'flex', margin: '1rem' }}>
                         <div>
                           <Link to='/product' state={product}>
                             <img className="img" src={product.thumbnail} alt="" style={{padding:'0.8rem', background:'gray'}}/>

@@ -34,10 +34,10 @@ function Products() {
             const json = await response.json()
             setProducts(json.products)
             // For check response please uncomment below line.
-            // console.log('response', json.products);
+            console.log('response', json.products);
         }
         API();
-    }, [])
+    }, [category])
 
 
     const handleImageClick = (image) => {
