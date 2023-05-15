@@ -5,6 +5,9 @@ import { Link } from 'react-router-dom';
 import SearchIcon from '@mui/icons-material/Search';
 import { url } from '../apiHandler';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { addToCart, removeFromCart } from './redux/cartValue';
 
 function Header(props) {
     const [searchName, setSearchName] = useState("");
@@ -12,8 +15,9 @@ function Header(props) {
     const [searchingSeq, setSearchingSeq] = useState([]);
     const [cartLength, setCartLength] = useState([]);
     const [showPopup, setShowPopup] = useState(false);
+    const dispatch = useDispatch();
 
-    const cartItems = JSON.parse(localStorage.getItem("cart"));
+    const cartItems = useSelector((item) => item.cart.cartItems)
 
     const togglePopup = () => {
         setShowPopup(!showPopup);
@@ -28,6 +32,7 @@ function Header(props) {
             // For check response please uncomment below line.
         }
         API();
+
     }, [])
 
     useEffect(() => {
@@ -147,7 +152,7 @@ function Header(props) {
                                 </div>
                                 <div>
                                     <IconButton aria-label="cart" onClick={togglePopup}>
-                                        <Badge badgeContent={cartLength.length} color="info">
+                                        <Badge badgeContent={cartItems.length} color="info">
                                             <ShoppingCartIcon style={{ color: 'aliceblue' }} />
                                         </Badge>
                                     </IconButton>
@@ -175,11 +180,11 @@ function Header(props) {
                                         <tr key={item.id}>
                                             <td className='cartImgs'><img className='cartImg' src={item.thumbnail} /></td>
                                             <td><p>{item.title}</p></td>
-                                            <td><p>${item.price * item.quantity}</p></td>
+                                            <td><p>${item.price * item.qty}</p></td>
                                             <td>
-                                                <button onClick={() => handleRemoveFromCart(item)}>-</button>
-                                                <span className='addButton'>{item.quantity}</span>
-                                                <button className='addButton' onClick={() => handleAddToCart(item)}>+</button>
+                                                <button onClick={() => dispatch(removeFromCart(item))}>-</button>
+                                                <span className='addButton'>{item.qty}</span>
+                                                <button className='addButton' onClick={() => dispatch(addToCart(item))}>+</button>
                                             </td>
                                         </tr>
                                     ))}
@@ -187,9 +192,9 @@ function Header(props) {
                             </table>
                         </div>
                             <div className="cart-total" style={{ display: 'flex', alignItems: 'center' }}>
-                                <p style={{ marginRight: '1rem' }}>Total: ${cartItems.reduce((total, item) => total + item.price * item.quantity, 0)}</p>
+                                <p style={{ marginRight: '1rem' }}>Total: ${cartItems.reduce((total, item) => total + item.price * item.qty, 0)}</p>
                                 <Link to='/signUp'><button>Checkout</button></Link>
-                            </div></> : <h2  style={{width:'25rem'}}>You Cart is empty</h2>}
+                            </div></> : <h2 style={{ width: '25rem' }}>You Cart is empty</h2>}
                     </div>
                 </Dialog>
             )}

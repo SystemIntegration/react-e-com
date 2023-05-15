@@ -3,9 +3,12 @@ import { Link, useLocation } from 'react-router-dom'
 import { Button, Grid, Rating } from '@mui/material';
 import { urlCategory } from '../apiHandler';
 import Header from './header';
+import { useDispatch } from 'react-redux';
+import { addToCart, removeFromCart } from './redux/cartValue';
 
 function Products() {
     const location = useLocation();
+    const dispatch = useDispatch();
     const product = location.state;
 
     const [image, setImage] = useState(product.images[0])
@@ -45,36 +48,6 @@ function Products() {
         setImage(image)
     }
 
-    // method for Add item to cart
-    const handleAddToCart = (product) => {
-        const existingProductIndex = cartItems.findIndex(item => item.id === product.id);
-        if (existingProductIndex >= 0) {
-            const updatedCartItems = [...cartItems];
-            updatedCartItems[existingProductIndex].quantity += 1;
-            localStorage.setItem("cart", JSON.stringify(updatedCartItems))
-            setCartItems(JSON.parse(localStorage.getItem("cart")));
-        } else {
-            const newCartItem = { ...product, quantity: 1 };
-            localStorage.setItem("cart", JSON.stringify([...cartItems, newCartItem]))
-            setCartItems(JSON.parse(localStorage.getItem("cart")));
-
-        }
-    };
-
-    // method for remove item from cart
-    const handleRemoveFromCart = (product) => {
-        const existingProductIndex = cartItems.findIndex(item => item.id === product.id);
-        if (existingProductIndex >= 0) {
-            const updatedCartItems = [...cartItems];
-            if (updatedCartItems[existingProductIndex].quantity === 1) {
-                updatedCartItems.splice(existingProductIndex, 1);
-            } else {
-                updatedCartItems[existingProductIndex].quantity -= 1;
-            }
-            localStorage.setItem("cart", JSON.stringify(updatedCartItems))
-            setCartItems(JSON.parse(localStorage.getItem("cart")));
-        }
-    };
 
     // Calculate the original price
     const originalPrice = (discountedPrice, discountPercentage) => { return (discountedPrice / (1 - (discountPercentage / 100))) };
@@ -122,8 +95,8 @@ function Products() {
                                 ${Math.floor(originalPrice(product.price, product.discountPercentage))}</s>
                             <h4 style={{ color: 'green', marginLeft: "1rem" }}>{product.discountPercentage}% Off</h4>
                         </div>
-                        <Button className='addToCart' onClick={() => handleAddToCart(product)}>Add to cart</Button>
-                        <Button className='removeFromCart' disabled={cartItems.length > 0 ? false : true} onClick={() => handleRemoveFromCart(product)} >Remove from cart</Button>
+                        <Button className='addToCart' onClick={() => dispatch(addToCart(product))}>Add to cart</Button>
+                        <Button className='removeFromCart' onClick={() => dispatch(removeFromCart(product))} >Remove from cart</Button>
                     </div>
                 </div>
                 <div style={{ textAlign: 'center', display: 'flex', margin: '2rem 0' }}>
