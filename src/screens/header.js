@@ -114,8 +114,8 @@ function Header(props) {
                             </Typography>
                         </div>
                         <div style={{ display: 'flex', justifyContent: 'center', alignContent: 'center' }}>
-                            <div className='input' style={{ textAlign: 'center', width: '15rem', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                                <div style={{ textAlign: 'center', width: '15rem', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                            <div className='inputField' style={{ textAlign: 'center',display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                                <div style={{ textAlign: 'center', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                                     <Link to="/product" state={dataForSend[0]} style={{ pointerEvents: dataForSend.length === 0 && 'none' }}>
                                         <SearchIcon style={{ marginTop: '1rem', color: 'white' }} />
                                     </Link>
@@ -164,7 +164,7 @@ function Header(props) {
                             <table style={{ width: '100%' }}>
                                 <thead>
                                     <tr>
-                                        <td></td>
+                                        <td className='cartImgs'></td>
                                         <td style={{ width: '7rem' }} >Product Name</td>
                                         <td style={{ width: '7rem' }} >Product Price</td>
                                         <td style={{ width: '7rem' }} >Product QTY</td>
@@ -173,7 +173,7 @@ function Header(props) {
                                 <tbody>
                                     {cartItems.map(item => (
                                         <tr key={item.id}>
-                                            <td><img className='cartImg' src={item.thumbnail} /></td>
+                                            <td className='cartImgs'><img className='cartImg' src={item.thumbnail} /></td>
                                             <td><p>{item.title}</p></td>
                                             <td><p>${item.price * item.quantity}</p></td>
                                             <td>

@@ -44,7 +44,7 @@ function Category() {
   const userData = filterData(mainCategoryData, category);
 
   return (
-    <div style={{ display: 'flex', marginTop:'2.8rem' }}>
+    <div style={{ display: 'flex', marginTop:'4.8rem' }}>
       <div className='leftDiv'>
         {categoryNames.map((data) => {
           return (<div style={{

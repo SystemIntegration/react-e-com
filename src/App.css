@@ -135,8 +135,8 @@
 
 .toolbar {
   display: flex;
- justify-content: space-between;
- align-items: center;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .cart-container {
@@ -163,6 +163,10 @@
 .autoComplete div {height: 45px;}
 .autoComplete fieldset {border-color: aliceblue !important;border-radius: 5rem;}
 .autoComplete input {color: aliceblue;}
+
+.rightTextField{
+  margin-right: 1rem !important;
+}
 
 @media screen and (max-width: 330px) {
   .addToCart {
@@ -196,6 +200,12 @@
 
   .addButton {
     margin-left: 0.1rem;
+  }
+}
+
+@media screen and (max-width: 355px) {
+  .cartImgs {
+   display: none;
   }
 }
 
@@ -250,6 +260,12 @@
     font-size: 0.8rem !important;
     margin-left: 1rem !important;
   }
+  .toolbar {
+    display: block !important;
+  }
+  .mainGrid {
+    margin-top: 4.5rem !important;
+  }
 }
 
 @media screen and (max-width: 430px) {
@@ -274,6 +290,11 @@
 @media screen and (max-width: 470px) {
   .logoName {
     font-size: 1.5rem !important;
+  }
+  .autoComplete{ width: 8rem !important;}
+  .rightTextField{
+    margin-right: 0rem !important;
+    margin-bottom: 1rem !important;
   }
 }
 
@@ -316,6 +337,7 @@
     width: 70%;
     margin: 0;
   }
+  .autoComplete{ width: 12rem;}
 }
 
 @media screen and (max-width: 920px) {
