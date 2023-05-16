@@ -17,8 +17,6 @@ function ProductsList() {
             const response = await fetch(urlCategory + categoryName)
             const json = await response.json()
             setProducts(json.products)
-            // For check response please uncomment below line.
-            // console.log('response', json.products);
         }
         API();
     }, [])
@@ -29,7 +27,6 @@ function ProductsList() {
 
     // mainTask list for show in display.
     const filteredData = products.filter((t) =>
-        // console.log('searchResult', t.title.toLowerCase().includes(searchResult.toLowerCase())),
         t.title.toLowerCase().includes(searchResult.toLowerCase())
     );
 

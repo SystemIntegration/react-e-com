@@ -13,16 +13,8 @@ function Products() {
 
     const [image, setImage] = useState(product.images[0])
     const [selectedImage, setSelectedImage] = useState(product.images[0]);
-    const [cartItems, setCartItems] = useState([]);
     const [products, setProducts] = useState([])
     const category = product.category;
-
-    useEffect(() => {
-        const rData = localStorage.getItem("cart");
-        if (rData !== null) {
-            setCartItems(JSON.parse(rData));
-        }
-    }, [])
 
     useEffect(() => {
         // method for get data from API
@@ -44,7 +36,6 @@ function Products() {
         setSelectedImage(image);
         setImage(image)
     }
-
 
     // Calculate the original price
     const originalPrice = (discountedPrice, discountPercentage) => { return (discountedPrice / (1 - (discountPercentage / 100))) };

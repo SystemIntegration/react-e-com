@@ -16,9 +16,7 @@ function Header(props) {
     const [cartItems, setCartItems] = useState([]);
     const [showPopup, setShowPopup] = useState(false);
     const dispatch = useDispatch();
-
     const cartItem = useSelector((item) => item.cartItems);
-
 
     const togglePopup = () => {
         setShowPopup(!showPopup);
