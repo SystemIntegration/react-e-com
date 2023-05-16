@@ -67,29 +67,29 @@ function Header(props) {
                     <Toolbar className='toolbar' disableGutters>
                         <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                             <Logo style={{ width: '3rem', height: '3rem', marginRight: '1rem' }} />
-                            <Typography
-                                className='logoName'
-                                style={{
-                                    color: '#fff',
-                                    display: 'block',
-                                }}
-                                noWrap
-                                component="a"
-                                href="/home"
-                                sx={{
-                                    fontFamily: 'monospace',
-                                    fontWeight: 700,
-                                    textDecoration: 'none',
-                                }}
-                            >
-                                BMV Shopping
-                            </Typography>
+                            <Link to="/home" style={{ textDecoration:'none' }}>
+                                <Typography
+                                    className='logoName'
+                                    style={{
+                                        color: '#fff',
+                                        display: 'block',
+                                    }}
+                                    noWrap
+                                    sx={{
+                                        fontFamily: 'monospace',
+                                        fontWeight: 700,
+                                        textDecoration: 'none',
+                                    }}
+                                >
+                                    BMV Shopping
+                                </Typography>
+                            </Link>
                         </div>
                         <div style={{ display: 'flex', justifyContent: 'center', alignContent: 'center' }}>
                             <div className='inputField' style={{ textAlign: 'center', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                                 <div style={{ textAlign: 'center', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                                     <Link to="/product" state={dataForSend[0]} style={{ pointerEvents: dataForSend.length === 0 && 'none' }}>
-                                        <SearchIcon style={{ marginTop: '1rem', color: 'white' }} />
+                                        <SearchIcon style={ { marginTop: '1rem', color: 'white' }} />
                                     </Link>
                                     <Autocomplete
                                         loading
