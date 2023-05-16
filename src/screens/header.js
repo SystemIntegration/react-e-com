@@ -118,7 +118,7 @@ function Header(props) {
                                     />
                                 </div>
                                 <div>
-                                    <IconButton aria-label="cart" onClick={togglePopup}>
+                                    <IconButton aria-label="cart" onClick={togglePopup} style={{marginTop:'1rem'}}>
                                         <Badge badgeContent={cartItems.length} color="info">
                                             <ShoppingCartIcon style={{ color: 'aliceblue' }} />
                                         </Badge>

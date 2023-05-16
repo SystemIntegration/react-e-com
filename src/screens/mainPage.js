@@ -45,7 +45,7 @@ function MainPage() {
                     <div style={{ display: 'flex', margin: '1rem' }}>
                       <div>
                         <Link to='/product' state={product}>
-                            <img className="img" src={product.thumbnail} alt="" style={{padding:'0.8rem', background:'gray'}}/>
+                          <img className="img" src={product.thumbnail} alt="" style={{ padding: '0.8rem', background: 'gray' }} />
                         </Link>
                       </div>
                       <div style={{ marginLeft: '2rem' }}>
@@ -68,8 +68,8 @@ function MainPage() {
               </Grid>
             </div>
           </div> : <Category />}
+        <Bottom OnTabChange={setTabValue} />
       </div >
-      <Bottom OnTabChange={setTabValue} />
     </>
   );
 }
