@@ -21,7 +21,6 @@ function Products() {
         const rData = localStorage.getItem("cart");
         if (rData !== null) {
             setCartItems(JSON.parse(rData));
-            console.log('cart', JSON.parse(rData));
         }
     }, [])
 
@@ -31,8 +30,6 @@ function Products() {
             const response = await fetch(urlCategory + category)
             const json = await response.json()
             setProducts(json.products)
-            // For check response please uncomment below line.
-            console.log('response', json.products);
         }
         API();
     }, [category])

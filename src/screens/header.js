@@ -13,11 +13,12 @@ function Header(props) {
     const [searchName, setSearchName] = useState("");
     const [value, setValue] = useState("");
     const [searchingSeq, setSearchingSeq] = useState([]);
-    const [cartLength, setCartLength] = useState([]);
+    const [cartItems, setCartItems] = useState([]);
     const [showPopup, setShowPopup] = useState(false);
     const dispatch = useDispatch();
 
-    const cartItems = useSelector((item) => item.cart.cartItems)
+    const cartItem = useSelector((item) => item.cartItems);
+
 
     const togglePopup = () => {
         setShowPopup(!showPopup);
@@ -32,14 +33,11 @@ function Header(props) {
             // For check response please uncomment below line.
         }
         API();
-
+        setCartItems(cartItem)
     }, [])
 
     useEffect(() => {
-        const rData = localStorage.getItem("cart");
-        if (rData !== null) {
-            setCartLength(JSON.parse(rData))
-        }
+        setCartItems(cartItem)
     })
 
     const handleInputChange = (event) => {
@@ -62,35 +60,6 @@ function Header(props) {
     // Method for Close Drawer
     const handleCloseDrawer = () => {
         setShowPopup(false);
-    };
-
-    // method for Add item to cart
-    const handleAddToCart = (product) => {
-        const existingProductIndex = cartItems.findIndex(item => item.id === product.id);
-        if (existingProductIndex >= 0) {
-            const updatedCartItems = [...cartItems];
-            updatedCartItems[existingProductIndex].quantity += 1;
-            localStorage.setItem("cart", JSON.stringify(updatedCartItems))
-        } else {
-            const newCartItem = { ...product, quantity: 1 };
-            localStorage.setItem("cart", JSON.stringify([...cartItems, newCartItem]))
-
-        }
-    };
-
-    // method for remove item from cart
-    const handleRemoveFromCart = (product) => {
-        const existingProductIndex = cartItems.findIndex(item => item.id === product.id);
-        if (existingProductIndex >= 0) {
-            const updatedCartItems = [...cartItems];
-            if (updatedCartItems[existingProductIndex].quantity === 1) {
-                updatedCartItems.splice(existingProductIndex, 1);
-            } else {
-                updatedCartItems[existingProductIndex].quantity -= 1;
-            }
-            localStorage.setItem("cart", JSON.stringify(updatedCartItems))
-
-        }
     };
 
     return (
