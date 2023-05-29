@@ -1,0 +1,34 @@
+{
+  "files": {
+    "main.css": "/react-e-com/static/css/main.4dcdfed6.css",
+    "main.js": "/react-e-com/static/js/main.97679c97.js",
+    "static/js/787.2541dd2b.chunk.js": "/react-e-com/static/js/787.2541dd2b.chunk.js",
+    "static/media/Men's Fashion.png": "/react-e-com/static/media/Men's Fashion.6cc7f8bcdfbb0794b3a1.png",
+    "static/media/motorbike.png": "/react-e-com/static/media/motorbike.d1bb88dd15386211ed5b.png",
+    "static/media/mens-shirts.png": "/react-e-com/static/media/mens-shirts.24c3015765fac24b1aa0.png",
+    "static/media/logo.svg": "/react-e-com/static/media/logo.4ed6b037039dc082af2d1843281f8b8b.svg",
+    "static/media/Women's Fashion.png": "/react-e-com/static/media/Women's Fashion.45a7262c5b471602d2e5.png",
+    "static/media/Auto Motives.png": "/react-e-com/static/media/Auto Motives.ed261a91c13f12f8f7df.png",
+    "static/media/watch.png": "/react-e-com/static/media/watch.5fec9d07ddda93d1b3ff.png",
+    "static/media/pearl-necklace.png": "/react-e-com/static/media/pearl-necklace.3e16fe33ca2bde9910a4.png",
+    "static/media/woman-clothes.png": "/react-e-com/static/media/woman-clothes.4eff0811363ebc4ada60.png",
+    "static/media/mens-shoes.png": "/react-e-com/static/media/mens-shoes.e3cf5217ec0455d087c9.png",
+    "static/media/fragrances.png": "/react-e-com/static/media/fragrances.ca729f13e056cfca04ec.png",
+    "static/media/handbag.png": "/react-e-com/static/media/handbag.a656fe08eb126660e661.png",
+    "static/media/high-heels.png": "/react-e-com/static/media/high-heels.b22538e137f3af32f190.png",
+    "static/media/houseDecoration.png": "/react-e-com/static/media/houseDecoration.0f8033ee0d4771e9e01e.png",
+    "static/media/wrist-watch.png": "/react-e-com/static/media/wrist-watch.76cacc1a58518edc3592.png",
+    "static/media/cream.png": "/react-e-com/static/media/cream.c7ef00578189d5f2023e.png",
+    "static/media/lamp.png": "/react-e-com/static/media/lamp.267fc51966828ebcb46c.png",
+    "static/media/top.png": "/react-e-com/static/media/top.ecc122f9c6c1363d60dc.png",
+    "static/media/car.png": "/react-e-com/static/media/car.79d282d7a88fabdc2bd2.png",
+    "index.html": "/react-e-com/index.html",
+    "main.4dcdfed6.css.map": "/react-e-com/static/css/main.4dcdfed6.css.map",
+    "main.97679c97.js.map": "/react-e-com/static/js/main.97679c97.js.map",
+    "787.2541dd2b.chunk.js.map": "/react-e-com/static/js/787.2541dd2b.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.4dcdfed6.css",
+    "static/js/main.97679c97.js"
+  ]
+}
