@@ -1,7 +1,7 @@
 {
   "name": "react-e-com",
   "version": "1.0.0",
-  "homepage": "./",
+  "homepage": "https://systemintegration.github.io/react-js-shopping",
   "private": false,
   "dependencies": {
     "@emotion/react": "^11.10.6",
